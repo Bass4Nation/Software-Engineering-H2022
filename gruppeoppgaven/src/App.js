@@ -1,17 +1,18 @@
-import logo from "./logo.svg";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Login from "./components/Login.js";
+import Main from "./components/Main.js";
+
 
 function App() {
   return (
-    <>
-      <Header title="Gruppe 22" />
-      <Nav />
-      <main></main>
-      <Footer />
-    </>
+
+  <Router>
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/Main" element={<Main />} />
+      </Routes>
+  </Router>
   );
 }
 
