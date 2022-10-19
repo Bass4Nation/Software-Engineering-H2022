@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
 
 
-const Header = ({title}) => {
-    return (
-        <div className="header">
-            <h1>{title}</h1>
-        </div>
-    )
-}
+const Header = ({ title }) => {
+  return (
+    <div className="header">
+      <h1>{title}</h1>
+
+    </div>
+  );
+};
 
 export default Header;

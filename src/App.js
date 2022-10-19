@@ -3,16 +3,14 @@ import "./App.css";
 import Login from "./components/Login.js";
 import Main from "./components/Main.js";
 
-
 function App() {
   return (
-
-  <Router>
+    <Router>
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/Main" element={<Main />} />
       </Routes>
-  </Router>
+    </Router>
   );
 }
 

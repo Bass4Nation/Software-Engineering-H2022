@@ -1,11 +1,9 @@
-
-
 const Footer = () => {
-    return (
-        <footer>
-            <p>© 2022 - Gruppe 22</p>
-        </footer>
-    )
-}
+  return (
+    <footer>
+      <p>© 2022 - Gruppe 22</p>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
