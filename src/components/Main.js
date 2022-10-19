@@ -7,14 +7,16 @@ import { useLocation } from "react-router-dom";
 
 //Vet ikke om dette er den beste måten å sende data over?!
 const Main = () => {
+  //Current user
   const location = useLocation();
-  console.log(location.state);
+  const user = location.state.username;
+  const isAdmin = location.state.isAdmin;
+
   return (
     <div>
       <Nav />
       <p>
-        Loggin in user: {location.state.username}, Admin: 
-        {location.state.isAdmin.toString()}
+        Loggin in user: {user}, Admin: {isAdmin.toString()}
       </p>
       <p>MAIN</p>
       <Footer />

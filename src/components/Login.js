@@ -14,7 +14,7 @@ export default function Login(props) {
     isAdmin: false,
   });
 
-  // Writes data from form into userData
+  // Set Userdata
   function registerHandleChange(event) {
     const { name, value, type, checked } = event.target;
     setUserData((prevUserData) => {
@@ -26,9 +26,16 @@ export default function Login(props) {
   }
 
   //RegisterHandleChange.  Gather data from event and put in array
-  const [userArray, setUserArray] = React.useState([]);
+  const [userArray, setUserArray] = React.useState(() => {
+    //Gettig locaStorage and setting it as userArray
+    const saved = localStorage.getItem("userArray");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
   const [isNameTaken, setisNameTaken] = React.useState();
-  function SubmitHandleChange(event) {
+
+  function RegisterSubmitHandleChange(event) {
     event.preventDefault();
     if (checkUsernameAvailability(event.target[0].value)) {
       setisNameTaken(<p>Username is already registered!</p>);
@@ -39,9 +46,13 @@ export default function Login(props) {
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
       setNotRegisteredUser();
-
     }
   }
+
+  //Every Time userArray gets changed, it saves to LocalStorage
+  React.useEffect(() => {
+    localStorage.setItem("userArray", JSON.stringify(userArray));
+  }, [userArray]);
 
   //just a print
   React.useEffect(() => {
@@ -72,12 +83,19 @@ export default function Login(props) {
   const navigate = useNavigate(); //
 
   //Ikke Helt ferdig
-  const [NotRegisteredUser, setNotRegisteredUser] = React.useState(<p>no users are registered!</p>);
+  const [NotRegisteredUser, setNotRegisteredUser] = React.useState(
+    <p>no users are registered!</p>
+  );
   function loginSubmitHandleChange(event) {
     event.preventDefault();
     for (var i = 0; i < userArray.length; i++) {
       if (userArray[i].username === loginUsername) {
-        navigate("/Main", { state: { username: userArray[i].username, isAdmin: userArray[i].isAdmin } });
+        navigate("/Main", {
+          state: {
+            username: userArray[i].username,
+            isAdmin: userArray[i].isAdmin,
+          },
+        });
       } else {
         setNotRegisteredUser(<p>Username is not registered!</p>);
       }
@@ -109,7 +127,7 @@ export default function Login(props) {
       {RegisterRender && ( // This whole register form is conditionally rendered
         <div className="Login_wrapper">
           <h2>Register acount</h2>
-          <form onSubmit={SubmitHandleChange}>
+          <form onSubmit={RegisterSubmitHandleChange}>
             <input
               type="text"
               placeholder="username"
