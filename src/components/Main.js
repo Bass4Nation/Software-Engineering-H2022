@@ -5,8 +5,9 @@ import Footer from "./Footer";
 import "./Login";
 import { useLocation } from "react-router-dom";
 
-//Vet ikke om dette er den beste måten å sende data over?!
 const Main = () => {
+  
+//Vet ikke om dette er den beste måten å sende data over?!
   //Current user
   const location = useLocation();
   const user = location.state.username;
