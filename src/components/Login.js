@@ -34,11 +34,12 @@ export default function Login(props) {
       setisNameTaken(<p>Username is already registered!</p>);
     } else {
       const myObj = {
-        id: userArray.length + 1,
         username: event.target[0].value,
         isAdmin: event.target[1].checked,
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
+      setNotRegisteredUser();
+
     }
   }
 
@@ -68,25 +69,26 @@ export default function Login(props) {
     }
   }
 
-  const navigate = useNavigate();//
+  const navigate = useNavigate(); //
 
-
-//Ikke Helt ferdig
-  const [NotRegisteredUser, setNotRegisteredUser] = React.useState();
+  //Ikke Helt ferdig
+  const [NotRegisteredUser, setNotRegisteredUser] = React.useState(<p>no users are registered!</p>);
   function loginSubmitHandleChange(event) {
     event.preventDefault();
-    if (checkUsernameAvailability(loginUsername)) {
-      navigate("/Main", {state:{username: (loginUsername)}})
-    } else {
-      setNotRegisteredUser(<p>Username is not registered!</p>);
+    for (var i = 0; i < userArray.length; i++) {
+      if (userArray[i].username === loginUsername) {
+        navigate("/Main", { state: { username: userArray[i].username, isAdmin: userArray[i].isAdmin } });
+      } else {
+        setNotRegisteredUser(<p>Username is not registered!</p>);
+      }
     }
   }
+
   //Conditionally NotRegisteredUser
 
   return (
     <div>
       <Header />
-      <Nav />
       {!RegisterRender && ( // This whole register form is conditionally rendered
         <div>
           <h2>Login</h2>
@@ -139,6 +141,6 @@ export default function Login(props) {
   );
 }
 
-function test(){
-    return (<p>ssd</p>)
+function test() {
+  return <p>ssd</p>;
 }
