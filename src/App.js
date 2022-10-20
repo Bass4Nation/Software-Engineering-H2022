@@ -9,6 +9,7 @@ import Main from "./components/Main.js";
 import Layout from "./components/Layout.js";
 import Utleie from "./components/Utleie";
 import AlleBiler from "./components/AlleBiler";
+import RegistrerBil from "./components/RegistrerBil";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/utleie" element={<Utleie />} />
             <Route path="/alle-biler" element={<AlleBiler />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registrer-bil" element={<RegistrerBil />} />
             {/* <Route path="/dashboard" element={<Dashboard />} />  For å se brukerens profil  */}
           </Routes>
         </Layout>

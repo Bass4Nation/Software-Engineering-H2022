@@ -21,6 +21,7 @@ const Nav = () => {
         <Link to="/">Hjem</Link>  {/* Link til forsiden */}
         <Link to="/alle-biler">Alle biler til leie</Link> {/* Link til alle biler som er til leie i systemet */}
         <Link to="/utleie">Utleie av bil</Link>  {/* Link til utleie */}
+        <Link to="/registrer-bil">Registrer bil</Link>  {/* Link til registrering av bil */}
         {/* Viss brukeren er logget inn så skal den bytte på om brukeren er innlogget eller eller utlogget */}
         {false === true ? (
           // <Link to="/Dashboard">Min profil</Link>
