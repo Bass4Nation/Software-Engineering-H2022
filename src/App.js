@@ -1,16 +1,31 @@
-import { Route, HashRouter as Router, Routes } from "react-router-dom";
+// import { Route, HashRouter as Router, Routes } from "react-router-dom";
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import Login from "./components/Login.js";
 import Main from "./components/Main.js";
+import Layout from "./components/Layout.js";
+import Utleie from "./components/Utleie";
+import AlleBiler from "./components/AlleBiler";
+
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/Main" element={<Main />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/utleie" element={<Utleie />} />
+            <Route path="/alle-biler" element={<AlleBiler />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} />  For å se brukerens profil  */}
+          </Routes>
+        </Layout>
+      </Router>
+    </div>
   );
 }
 

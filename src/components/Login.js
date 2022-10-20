@@ -1,7 +1,4 @@
 import React from "react";
-import Header from "./Header";
-import Nav from "./Nav";
-import Footer from "./Footer";
 import useEffect from "react";
 import "./Login.css";
 import { useNavigate, Link } from "react-router-dom";
@@ -90,7 +87,7 @@ export default function Login(props) {
     event.preventDefault();
     for (var i = 0; i < userArray.length; i++) {
       if (userArray[i].username === loginUsername) {
-        navigate("/Main", {
+        navigate("/", {
           state: {
             username: userArray[i].username,
             isAdmin: userArray[i].isAdmin,
@@ -106,7 +103,6 @@ export default function Login(props) {
 
   return (
     <div>
-      <Header />
       {!RegisterRender && ( // This whole register form is conditionally rendered
         <div>
           <h2>Login</h2>
@@ -153,8 +149,6 @@ export default function Login(props) {
       <button onClick={toggleRegisterRender}>
         {RegisterRender ? "Login" : "Register "} form
       </button>
-
-      <Footer />
     </div>
   );
 }
