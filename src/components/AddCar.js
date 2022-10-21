@@ -1,7 +1,7 @@
 
 
 
-const RegistrerBil = () => {
+const AddCar = () => {
 
     return (
         <>
@@ -10,4 +10,4 @@ const RegistrerBil = () => {
     )
 }
 
-export default RegistrerBil;
+export default AddCar;

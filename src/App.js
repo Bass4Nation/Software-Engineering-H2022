@@ -8,8 +8,9 @@ import Login from "./components/Login.js";
 import Main from "./components/Main.js";
 import Layout from "./components/Layout.js";
 import Utleie from "./components/Utleie";
-import AlleBiler from "./components/AlleBiler";
-import RegistrerBil from "./components/RegistrerBil";
+import AllCars from "./components/AllCars";
+import AddCar from "./components/AddCar"; 
+import Dashboard from "./components/Dashboard";  // Min side/brukerprofil/dashboard
 
 
 function App() {
@@ -20,10 +21,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/utleie" element={<Utleie />} />
-            <Route path="/alle-biler" element={<AlleBiler />} />
+            <Route path="/alle-biler" element={<AllCars />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/registrer-bil" element={<RegistrerBil />} />
-            {/* <Route path="/dashboard" element={<Dashboard />} />  For å se brukerens profil  */}
+            <Route path="/registrer-bil" element={<AddCar />} />
+            <Route path="/dashboard" element={<Dashboard />} />  
           </Routes>
         </Layout>
       </Router>
