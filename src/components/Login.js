@@ -87,12 +87,8 @@ export default function Login(props) {
     event.preventDefault();
     for (var i = 0; i < userArray.length; i++) {
       if (userArray[i].username === loginUsername) {
-        navigate("/", {
-          state: {
-            username: userArray[i].username,
-            isAdmin: userArray[i].isAdmin,
-          },
-        });
+        navigate("/");
+        localStorage.setItem("loggedInUser", JSON.stringify(userArray[i]))
       } else {
         setNotRegisteredUser(<p>Username is not registered!</p>);
       }
