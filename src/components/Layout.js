@@ -5,7 +5,7 @@ import Nav from "./Nav";
 // Denne filen er en wrapper for alle sider, slik at vi slipper å skrive inn header, nav og footer på hver side.
 
 const Layout = ({ children }) => {
-  let title = "Gruppe 22"; // Tittel på siden
+  let title = "Gruppe 2"; // Tittel på siden
 
   return (
     <div>

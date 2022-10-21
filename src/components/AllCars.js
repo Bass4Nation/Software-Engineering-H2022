@@ -2,12 +2,14 @@ const AllCars = () => {
   // Test data
   let cars = [
     {
+      id: 1,
       name: "Volvo",
       price: 1000,
       year: 2010,
       img: "https://www.team-bhp.com/forum/attachments/test-drives-initial-ownership-reports/1655582d1499605671t-driven-volvo-v90-cross-country-volvoxc70d517040930.jpg",
     },
     {
+      id: 2,
       name: "BMW",
       price: 2000,
       year: 2015,
@@ -15,19 +17,17 @@ const AllCars = () => {
     },
   ];
 
-
-    const rentButton = (car) => {
-        // Her kan vi legge inn funksjonalitet for å leie bilen.
-        console.log(car);
-    }
-
+  const rentButton = (car) => {
+    // Her kan vi legge inn funksjonalitet for å leie bilen.
+    console.log(car);
+  };
 
   return (
     <>
       <h1>Alle biler til utleie</h1>
       <section>
         {cars.map((car) => (
-          <section>
+          <section key={car.id}>
             <h3>{car.name}</h3>
             <p>{car.year}</p>
             <p>{car.price} kr i mnd</p>

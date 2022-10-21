@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <footer>
-      <p>© 2022 - Gruppe 22</p>
+      <p>© 2022 - Gruppe 2</p>
     </footer>
   );
 };
