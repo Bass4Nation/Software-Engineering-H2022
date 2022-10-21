@@ -15,17 +15,17 @@ const Nav = () => {
 
 
 
-
-  // For å teste om bruker er logget inn/ Vise elementer basert på om bruker er logget inn eller ikke
-  const changeLogStatus = () => {
-    // Logg ut bruker
-    if(loggedIn === true) {
-      setLoggedIn(false);
-    }else{
-      // Logg inn bruker
+  React.useEffect(() => {
+    if (localStorage.getItem("loggedInUser")!== null){
       setLoggedIn(true);
+    }else{
+      setLoggedIn(false);
     }
-  };
+  }, [logOut]);
+
+  function logOut(){
+    localStorage.removeItem("loggedInUser")
+  }
 
 
 
@@ -43,14 +43,15 @@ const Nav = () => {
         {/* Viss brukeren er logget inn så skal den bytte på om brukeren er innlogget eller eller utlogget */}
         {loggedIn ? (
           // <Link to="/Dashboard">Min profil</Link>
-          <Link to="/">Logout</Link>
+          <Link onClick={logOut} to="/login">Logout</Link>
         ) : (
           <Link to="/login">Login</Link>
         )}
       </nav>
-      <button onClick={changeLogStatus}>Logg inn</button> {/* Knapp for å logge inn/ut. Endrer bare loggedIn State for nå*/}
     </>
   );
 };
 
 export default Nav;
+
+//      {!loggedIn ? <button onClick={changeLogStatus}>Logg ut</button> : <></>}
