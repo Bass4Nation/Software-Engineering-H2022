@@ -7,7 +7,6 @@ import "./App.css";
 import Login from "./components/Login.js";
 import Main from "./components/Main.js";
 import Layout from "./components/Layout.js";
-import Utleie from "./components/Utleie";
 import AllCars from "./components/AllCars";
 import AddCar from "./components/AddCar"; 
 import Dashboard from "./components/Dashboard";  // Min side/brukerprofil/dashboard
@@ -20,7 +19,6 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/utleie" element={<Utleie />} />
             <Route path="/alle-biler" element={<AllCars />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registrer-bil" element={<AddCar />} />

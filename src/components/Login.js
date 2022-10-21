@@ -9,6 +9,7 @@ export default function Login(props) {
   const [userData, setUserData] = React.useState({
     username: "",
     isAdmin: false,
+    cars: [],
   });
 
   // Set Userdata
@@ -40,6 +41,7 @@ export default function Login(props) {
       const myObj = {
         username: event.target[0].value,
         isAdmin: event.target[1].checked,
+        cars: [],
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
       setNotRegisteredUser();

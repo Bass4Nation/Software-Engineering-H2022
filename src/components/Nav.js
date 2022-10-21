@@ -35,7 +35,6 @@ const Nav = () => {
         <Link to="/">Hjem</Link> {/* Link til forsiden */}
         {/* Link til alle biler som er til leie i systemet */}
         <Link to="/alle-biler">Alle biler til leie</Link>
-        <Link to="/utleie">Utleie av bil</Link> {/* Link til utleie */}
         {/* Link til registrering av bil */}
         <Link to="/registrer-bil">Registrer bil</Link>{" "}
         {/* Link til dashboard */}
