@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
 const Nav = () => {
   // //Vet ikke om dette er den beste måten å sende data over?!
@@ -13,6 +14,8 @@ const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(false); // State for å sjekke om bruker er logget inn
 
 
+
+
   // For å teste om bruker er logget inn/ Vise elementer basert på om bruker er logget inn eller ikke
   const changeLogStatus = () => {
     // Logg ut bruker
@@ -23,6 +26,8 @@ const Nav = () => {
       setLoggedIn(true);
     }
   };
+
+
 
   return (
     <>

@@ -1,13 +1,17 @@
 import React from "react";
 
 const LoggedInUser = (props) => {
-  const [user, setUser] = React.useState("");
+    const [user, setUser] = React.useState(() => {
+        //Gettig locaStorage and setting it as userArray
+        if (localStorage.getItem("loggedInUSer")!== null){
+            const saved = localStorage.getItem("loggedInUser");
+            const initialValue = JSON.parse(saved);
+            return initialValue.username 
+        }else{
+            return "No User is Logged in"
+        }
+      });
 
-  React.useEffect(() => {
-    const saved = localStorage.getItem("loggedInUser");
-    const initialValue = JSON.parse(saved);
-    setUser(initialValue.username);
-  }, []);
 
   return (
     <>
