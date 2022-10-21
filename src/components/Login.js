@@ -1,6 +1,6 @@
 import React from "react";
 import useEffect from "react";
-import "./Login.css";
+import "./styles/Login.css";
 import { useNavigate, Link } from "react-router-dom";
 
 //////////////////////////////REGISTER LOGIC ///////////////////
