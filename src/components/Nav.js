@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
 const Nav = () => {
   // //Vet ikke om dette er den beste måten å sende data over?!
@@ -13,16 +14,20 @@ const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(false); // State for å sjekke om bruker er logget inn
 
 
-  // For å teste om bruker er logget inn/ Vise elementer basert på om bruker er logget inn eller ikke
-  const changeLogStatus = () => {
-    // Logg ut bruker
-    if(loggedIn === true) {
-      setLoggedIn(false);
-    }else{
-      // Logg inn bruker
+
+  React.useEffect(() => {
+    if (localStorage.getItem("loggedInUser")!== null){
       setLoggedIn(true);
+    }else{
+      setLoggedIn(false);
     }
-  };
+  }, [logOut]);
+
+  function logOut(){
+    localStorage.removeItem("loggedInUser")
+  }
+
+
 
   return (
     <>
@@ -38,14 +43,15 @@ const Nav = () => {
         {/* Viss brukeren er logget inn så skal den bytte på om brukeren er innlogget eller eller utlogget */}
         {loggedIn ? (
           // <Link to="/Dashboard">Min profil</Link>
-          <Link to="/">Logout</Link>
+          <Link onClick={logOut} to="/login">Logout</Link>
         ) : (
           <Link to="/login">Login</Link>
         )}
       </nav>
-      <button onClick={changeLogStatus}>Logg inn</button> {/* Knapp for å logge inn/ut. Endrer bare loggedIn State for nå*/}
     </>
   );
 };
 
 export default Nav;
+
+//      {!loggedIn ? <button onClick={changeLogStatus}>Logg ut</button> : <></>}
