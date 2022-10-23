@@ -113,21 +113,23 @@ export default function Login(props) {
               name="LoginUsername"
             />
             {NotRegisteredUser}
-            <button>Login</button>
+            <button id="loginButton">Login</button>
           </form>
         </div>
       )}
 
       {RegisterRender && ( // This whole register form is conditionally rendered
         <div className="Login_wrapper">
-          <h2>Register acount</h2>
+          <h2>Register account</h2>
           <form onSubmit={RegisterSubmitHandleChange}>
+          <label htmlFor="username">Username</label>
             <input
               type="text"
               placeholder="username"
               value={userData.username}
               onChange={registerHandleChange}
               name="username"
+              id="username"
             />
             <input
               type="checkbox"
@@ -139,14 +141,15 @@ export default function Login(props) {
             <label htmlFor="isAdmin">Admin konto</label>
             <br></br>
             {isNameTaken}
-            <button>Register User</button>
+            <button className="registerUserButton">Register User</button>
           </form>
         </div>
       )}
 
-      <button onClick={toggleRegisterRender}>
+      <button id="registerButton" onClick={toggleRegisterRender}>
         {RegisterRender ? "Login" : "Register "} form
       </button>
+      {/* <button></button> */}
     </div>
   );
 }

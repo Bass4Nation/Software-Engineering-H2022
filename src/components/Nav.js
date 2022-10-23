@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import React from "react";
+import "./styles/Nav.module.css";
 
 const Nav = () => {
   // //Vet ikke om dette er den beste måten å sende data over?!
@@ -31,8 +32,8 @@ const Nav = () => {
 
   return (
     <>
-      <nav>
-        <Link to="/">Hjem</Link> {/* Link til forsiden */}
+      <nav className="navEle">
+        <Link to="/" className="NavElementLinks" >Hjem</Link> {/* Link til forsiden */}
         {/* Link til alle biler som er til leie i systemet */}
         <Link to="/alle-biler">Alle biler til leie</Link>
         {/* Link til registrering av bil */}
