@@ -10,6 +10,7 @@ export default function Login(props) {
     username: "",
     isAdmin: false,
     cars: [],
+    EnsureUniqueId: 0,
   });
 
   // Set Userdata
@@ -42,6 +43,7 @@ export default function Login(props) {
         username: event.target[0].value,
         isAdmin: event.target[1].checked,
         cars: [],
+        EnsureUniqueId: 0,
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
       setNotRegisteredUser();
@@ -90,7 +92,7 @@ export default function Login(props) {
     for (var i = 0; i < userArray.length; i++) {
       if (userArray[i].username === loginUsername) {
         navigate("/");
-        localStorage.setItem("loggedInUser", JSON.stringify(userArray[i]))
+        localStorage.setItem("loggedInUser", (i))
       } else {
         setNotRegisteredUser(<p>Username is not registered!</p>);
       }

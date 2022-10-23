@@ -1,35 +1,34 @@
 import React from "react";
-import { useEffect } from "react";
 // Brukerens profil/dashboard
 const Dashboard = () => {
+
+  const userArray = JSON.parse(localStorage.getItem("userArray"));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   // Skal ta inn brukerens data fra "databasen" og vise det på siden.
   // Skal også ha mulighet til å endre på brukerens data.
 
-  const [user, setUser] = React.useState(() => {
-    //Gettig locaStorage and setting it as userArray
-
-    const saved = localStorage.getItem("loggedInUser");
-    const initialValue = JSON.parse(saved);
-    console.log(initialValue);
-
-    return initialValue;
-  });
+  const [user, setUser] = React.useState(userArray[loggedInUser] || []);
 
   const deleteCar = (car) => {
-    const saved = localStorage.getItem("userArray");
-    const initialValue = JSON.parse(saved);
-    for (var i = 0; i < initialValue.length; i++) {
-      if (initialValue[i].username === user.username) {
-        console.log("found user");
-        initialValue[i].cars.pop(car);
-        localStorage.setItem("userArray", JSON.stringify(initialValue));
-      } 
-    }
-  };
+    console.log("Sletter!************************")
+    console.log(userArray[loggedInUser].cars[0].id)
+    console.log(car.id)
+    console.log(userArray[loggedInUser].cars.length)
+    
 
+    for(var i = 0; i < userArray[loggedInUser].cars.length; i++){
+      if (userArray[loggedInUser].cars[i].id === car.id){
+        console.log("deleting")
+        userArray[loggedInUser].cars.splice(i, 1)
+        localStorage.setItem("userArray", JSON.stringify(userArray));
+        
+
+      }
+    }
+  } 
   
 
-  console.log(user);
+
   return (
     <div>
       <h1>Dashboard</h1>

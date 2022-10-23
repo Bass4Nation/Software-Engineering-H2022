@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import React from "react";
+
+const userArray = JSON.parse(localStorage.getItem("userArray"));
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 const AddCar = () => {
   const [car, setCar] = useState({
-    id: Array.length + 1,
+    id: userArray[loggedInUser].EnsureUniqueId,
     brand: "",
     model: "",
     year: "",
-    price: "",
+    seter: "",
   });
 
-
   const addCarToCarArray = (event) => {
-    // event.preventDefault();
-    const carArray = JSON.parse(localStorage.getItem("userArray")) || [];
-    carArray[0].cars.push(car);
-    localStorage.setItem("userArray", JSON.stringify(carArray));
-    console.log(carArray[0].cars);
+    event.preventDefault();
+
+    userArray[loggedInUser].cars.push(car);
+    userArray[loggedInUser].EnsureUniqueId = userArray[loggedInUser].EnsureUniqueId + 1;
+    setCar({ ...car, id: userArray[loggedInUser].EnsureUniqueId });
+    localStorage.setItem("userArray", JSON.stringify(userArray));
   };
-
-//   React.useEffect(() => {
-//     localStorage.setItem("userArray", JSON.stringify(userArray));
-//   }, [userArray]);
-
 
   return (
     <>
@@ -48,14 +47,14 @@ const AddCar = () => {
           value={car.year}
           onChange={(e) => setCar({ ...car, year: e.target.value })}
         />
-        <label>Pris pr mnd</label>
+        <label>seter</label>
         <input
           type="text"
-          name="price"
+          name="seats"
           value={car.price}
           onChange={(e) => setCar({ ...car, price: e.target.value })}
         />
-      <button onClick={addCarToCarArray}> Legg til bil</button>
+        <button onClick={addCarToCarArray}> Legg til bil</button>
       </form>
     </>
   );
