@@ -16,17 +16,20 @@ const Dashboard = () => {
   });
 
   const deleteCar = (car) => {
-    const saved = localStorage.getItem("userArray");
-    const initialValue = JSON.parse(saved);
-    for (var i = 0; i < initialValue.length; i++) {
-      if (initialValue[i].username === user.username) {
-        console.log("found user");
-        initialValue[i].cars.pop(car);
-        localStorage.setItem("userArray", JSON.stringify(initialValue));
-      } 
-    }
+// delete a car with use of Id from userArray and loggedInUser and refresh page
+    const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const loggedInUserIndex = userArray.findIndex(
+      (user) => user.username === loggedInUser.username
+    );
+    const carIndex = userArray[loggedInUserIndex].cars.findIndex(
+      (car) => car.id === car.id
+    );
+    userArray[loggedInUserIndex].cars.splice(carIndex, 1);
+    localStorage.setItem("userArray", JSON.stringify(userArray));
+    localStorage.setItem("loggedInUser", JSON.stringify(userArray[loggedInUserIndex]));
+    window.location.reload(); // <-- refresh page to show changes
   };
-
   
 
   console.log(user);

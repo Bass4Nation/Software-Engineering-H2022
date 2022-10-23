@@ -22,6 +22,7 @@ const AllCars = () => {
     console.log(car);
   };
 
+
   return (
     <>
       <h1>Alle biler til utleie</h1>

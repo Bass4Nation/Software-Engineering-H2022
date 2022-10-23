@@ -89,4 +89,8 @@ it("Render frontpage -> Loginpage -> Register test user -> frontpage", () => {
   expect(screen.getByText("Velkommen til forsiden")).toBeInTheDocument();
 });
 
+
+
+
+// Hjelp til å lage tester under her
 //To use getByTestId you need to add data-testid="whatever Id you want" to the element you want to test
