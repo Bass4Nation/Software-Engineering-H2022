@@ -11,13 +11,6 @@ const AddCar = () => {
     price: "",
   });
 
-  // const [car, setCar] = useState({
-  //   id: Array.length + 1,
-  //   brand: "",
-  //   model: "",
-  //   year: "",
-  //   price: "",
-  // });
 
   const addCarToCarArray = () => {
     // event.preventDefault();
