@@ -35,15 +35,18 @@ export default function Login(props) {
 
   function RegisterSubmitHandleChange(event) {
     event.preventDefault();
-    if (checkUsernameAvailability(event.target[0].value)) {
+    //Check if username is taken
+    const isNameTaken = userArray.some(
+      (user) => user.username === userData.username
+    ); // Check if username is taken
+    // console.log(isNameTaken);
+    if (isNameTaken === true) {
       setisNameTaken(<p>Username is already registered!</p>);
     } else {
-      const myObj = {
-        username: event.target[0].value,
-        isAdmin: event.target[1].checked,
-        cars: [],
-      };
-      setUserArray((prevArray) => [...prevArray, myObj]); //async
+      //Add user to userArray
+      setUserArray((prevUserArray) => {
+        return [...prevUserArray, userData];
+      });
       setNotRegisteredUser();
     }
   }
@@ -90,7 +93,7 @@ export default function Login(props) {
     for (var i = 0; i < userArray.length; i++) {
       if (userArray[i].username === loginUsername) {
         navigate("/");
-        localStorage.setItem("loggedInUser", JSON.stringify(userArray[i]))
+        localStorage.setItem("loggedInUser", JSON.stringify(userArray[i]));
       } else {
         setNotRegisteredUser(<p>Username is not registered!</p>);
       }
@@ -111,9 +114,12 @@ export default function Login(props) {
               value={loginUsername}
               onChange={loginHandleChange}
               name="LoginUsername"
+              data-testid="logginUsername"
             />
             {NotRegisteredUser}
-            <button id="loginButton">Login</button>
+            <button id="loginButton" data-testid="loginButton">
+              Login
+            </button>
           </form>
         </div>
       )}
@@ -122,14 +128,13 @@ export default function Login(props) {
         <div className="Login_wrapper">
           <h2>Register account</h2>
           <form onSubmit={RegisterSubmitHandleChange}>
-          <label htmlFor="username">Username</label>
             <input
               type="text"
               placeholder="username"
               value={userData.username}
               onChange={registerHandleChange}
               name="username"
-              id="username"
+              data-testid="registerUsername"
             />
             <input
               type="checkbox"
@@ -141,15 +146,23 @@ export default function Login(props) {
             <label htmlFor="isAdmin">Admin konto</label>
             <br></br>
             {isNameTaken}
-            <button className="registerUserButton">Register User</button>
+            <button
+              className="registerUserButton"
+              data-testid="registerNewUserButton"
+            >
+              Register User
+            </button>
           </form>
         </div>
       )}
 
-      <button id="registerButton" onClick={toggleRegisterRender}>
+      <button
+        id="registerButton"
+        onClick={toggleRegisterRender}
+        data-testid="registerFormButton"
+      >
         {RegisterRender ? "Login" : "Register "} form
       </button>
-      {/* <button></button> */}
     </div>
   );
 }
