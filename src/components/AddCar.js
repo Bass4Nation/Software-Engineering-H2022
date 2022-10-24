@@ -25,6 +25,8 @@ const AddCar = () => {
   };
 
   const [post, setpost] = useState({
+    title: "",
+    id: userArray[loggedInUser].EnsureUniqueId,
     renting_out_price: "",
     rentint_out_text: "",
     car: [],
@@ -36,10 +38,11 @@ const AddCar = () => {
     userArray[loggedInUser].posts.push(post);
     userArray[loggedInUser].EnsureUniqueId =
     userArray[loggedInUser].EnsureUniqueId + 1;
-    setpost({ ...post});
+    setpost({ ...post, id: userArray[loggedInUser].EnsureUniqueId});
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
+  
   const rendered = [];
   for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
     rendered.push(
@@ -58,6 +61,15 @@ const AddCar = () => {
     <>
       <h1>Lei ut</h1>
       <form onSubmit={addPosTtoArray}>
+      <label>Tittel</label>
+        <input
+          type="text"
+          name="title"
+          value={post.title}
+          onChange={(e) =>
+            setpost({ ...post, title: e.target.value })
+          }
+        />
         <label>Velg bil</label>
         <select
           type="text"
