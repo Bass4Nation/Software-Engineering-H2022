@@ -9,7 +9,7 @@ const Nav = () => {
   const location = useLocation();
   // const user = location.state.username;
   // const isAdmin = location.state.isAdmin;
-  console.log(location); // Skriv ut loginstatus i konsollen
+  // Skriv ut loginstatus i konsollen
 
   const [loggedIn, setLoggedIn] = useState(false); // State for å sjekke om bruker er logget inn
 

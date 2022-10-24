@@ -11,6 +11,7 @@ export default function Login(props) {
     isAdmin: false,
     cars: [],
     EnsureUniqueId: 0,
+    posts: [],
   });
 
   // Set Userdata
@@ -44,6 +45,7 @@ export default function Login(props) {
         isAdmin: event.target[1].checked,
         cars: [],
         EnsureUniqueId: 0,
+        posts: [],
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
       setNotRegisteredUser();
