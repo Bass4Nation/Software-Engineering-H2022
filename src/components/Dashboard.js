@@ -10,19 +10,14 @@ const Dashboard = () => {
   const [user, setUser] = React.useState(userArray[loggedInUser] || []);
 
   const deleteCar = (car) => {
-    console.log("Sletter!************************")
-    console.log(userArray[loggedInUser].cars[0].id)
-    console.log(car.id)
-    console.log(userArray[loggedInUser].cars.length)
-    
-
     for(var i = 0; i < userArray[loggedInUser].cars.length; i++){
       if (userArray[loggedInUser].cars[i].id === car.id){
-        console.log("deleting")
         userArray[loggedInUser].cars.splice(i, 1)
         localStorage.setItem("userArray", JSON.stringify(userArray));
-        
-
+        setUser({ //https://blog.logrocket.com/how-when-to-force-react-component-re-render/
+          ...user,
+          cars: userArray[loggedInUser].cars
+        })
       }
     }
   } 
