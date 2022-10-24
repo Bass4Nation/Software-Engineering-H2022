@@ -1,0 +1,32 @@
+
+/* All cars */
+.allCars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.car{
+    margin: 0 20px 20px 20px;
+    width: 300px;
+}
+.car img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.car button{
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.car button:hover{
+    background-color: #fff;
+    color: #000;
+}

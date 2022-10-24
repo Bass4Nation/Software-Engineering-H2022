@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import React from "react";
-import "./styles/Nav.module.css";
+import style from "./styles/Nav.module.css";
 
 const Nav = () => {
   // //Vet ikke om dette er den beste måten å sende data over?!
@@ -28,8 +28,8 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="navEle">
-        <Link to="/" className="NavElementLinks" data-testid="navMain">
+      <nav className={style.allNav}>
+        <Link to="/" className="NavElement" data-testid="navMain">
           Hjem
         </Link>
         {/* Link til forsiden */}
