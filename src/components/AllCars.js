@@ -24,11 +24,12 @@ const AllCars = () => {
 
 
   const navigate = useNavigate(); //https://reactrouter.com/en/main/hooks/use-navigate
-  const rentButton = (value) => {
-    navigate("/payment", {state: value});
-
-    // Her kan vi legge inn funksjonalitet for å leie bilen.
-
+  const rentButton = (value) => { //KANSKJE VI SKAL FJENRE POSTEN HVIS DEN ER UTLEID=?!!
+    if (value.rented_out){
+      console.log("utleid!")  
+    }else{
+      navigate("/payment", {state: value});
+    }
   };
 
   return (
@@ -43,6 +44,7 @@ const AllCars = () => {
             <p>Brand: {value.car.brand}</p>
             <p>Model: {value.car.model}</p>
             <p>year: {value.car.year}</p>
+            <p>rented_out; {String(value.rented_out)}</p>
             <button onClick={() => rentButton(value)}>Lei bil</button>
           </section>
         ))}
