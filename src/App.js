@@ -9,6 +9,7 @@ import Layout from "./components/Layout.js";
 import AllCars from "./components/AllCars";
 import AddCar from "./components/AddCar"; 
 import Dashboard from "./components/Dashboard";  // Min side/brukerprofil/dashboard
+import Payment from "./components/Payment";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registrer-bil" element={<AddCar />} />
             <Route path="/dashboard" element={<Dashboard />} />  
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </Layout>
       </Router>
