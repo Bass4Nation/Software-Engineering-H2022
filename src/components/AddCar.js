@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const AddCar = () => {
 
+
   // A useState for add a car with random id
   const [car, setCar] = useState({
     id: Math.floor(Math.random() * 10000),
@@ -23,6 +24,15 @@ const AddCar = () => {
     loggedInUser.cars.push(car);
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     // console.log(carArray[0].cars);
+  };
+
+  const checkIfUserIsLoggedIn = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const handleChange = (event) => {
@@ -67,7 +77,8 @@ const AddCar = () => {
           value={car.price}
           onChange={handleChange}
         />
-        <button type="submit">Add car</button>
+        {checkIfUserIsLoggedIn() ? <button type="submit" data-testid="addCarButtonTest">Add car</button> : <p data-testid="reqLogInTest">You need to be logged in to add a car</p>}
+        
       </form>
     </>
   );
