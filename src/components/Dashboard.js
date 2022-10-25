@@ -23,7 +23,7 @@ const Dashboard = () => {
       (user) => user.username === loggedInUser.username
     );
     const carIndex = userArray[loggedInUserIndex].cars.findIndex(
-      (car) => car.id === car.id
+      (carArr) => carArr.id === car.id
     );
     userArray[loggedInUserIndex].cars.splice(carIndex, 1);
     localStorage.setItem("userArray", JSON.stringify(userArray));
