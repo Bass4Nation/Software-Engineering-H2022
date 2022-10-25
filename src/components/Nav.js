@@ -32,13 +32,13 @@ const Nav = () => {
   return (
     <>
       <nav>
-        <Link to="/">Alle biler til leie</Link>
-        {loggedIn ? <Link to="/registrer-bil">Register bil</Link> : <></>}{/* Link til registrering av bil */}
-        {loggedIn ? <Link to="/dashboard">Min side</Link> : <></>}   {/* Link til dashboard */}
+        <Link to="/" data-testid="navMain">Alle biler til leie</Link>
+        {loggedIn ? <Link to="/registrer-bil" data-testid="navAddCar">Register bil</Link> : <></>}{/* Link til registrering av bil */}
+        {loggedIn ? <Link to="/dashboard" data-testid="navDashboard">Min side</Link> : <></>}   {/* Link til dashboard */}
         {loggedIn ? (
-          <Link onClick={logOut} to="/login">Logout</Link>  /* Viss brukeren er logget inn så skal den bytte på om brukeren er innlogget eller eller utlogget */
+          <Link onClick={logOut} to="/login" data-testid="navLogout">Logout</Link>  /* Viss brukeren er logget inn så skal den bytte på om brukeren er innlogget eller eller utlogget */
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" data-testid="navLogin">Login</Link>
         )}
       </nav>
     </>

@@ -1,5 +1,7 @@
 import React from "react";
+import { generateRandomId } from "./utils/RandId";
 // Brukerens profil/dashboard
+
 const Dashboard = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -7,7 +9,7 @@ const Dashboard = () => {
   // Skal også ha mulighet til å endre på brukerens data.
 
   const [user, setUser] = React.useState(userArray[loggedInUser] || []);
-
+  console.log(generateRandomId());
   const deleteCar = (car) => {
     for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
       if (userArray[loggedInUser].cars[i].id === car.id) {
@@ -38,9 +40,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1 >Dashboard</h1>
       <section>
-        <h2>Velkommen til din profil {user.username}!</h2>
+        <h2 data-testid="DashboardTestID">Velkommen til din profil {user.username}!</h2>
       </section>
 
       <section>
