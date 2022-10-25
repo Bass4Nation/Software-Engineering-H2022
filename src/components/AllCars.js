@@ -2,8 +2,8 @@ import React from "react";
 
 const AllCars = () => {
 
-  const userArray = JSON.parse(localStorage.getItem("userArray"));
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || [];
 
   
 
