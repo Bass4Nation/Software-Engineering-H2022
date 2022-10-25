@@ -1,40 +1,56 @@
-import { useState, useEffect } from "react";
-import style from "./styles/AllCars.module.css";
-
+import React from "react";
 
 const AllCars = () => {
 
-  const [cars, setCars] = useState([]);
+  const userArray = JSON.parse(localStorage.getItem("userArray"));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  const temp_img = "./temp_car_img.jpg";
+  
 
-  const rentButton = (car) => {
+  const [display_array, setdisplay_array] = React.useState(() => {
+    const myArr = [] 
+    for (let i = 0; i < userArray.length; i++) {
+      if ((userArray[i].posts.length) > 0){
+        for (let j = 0; j < userArray[i].posts.length; j++) {
+          (myArr.push(userArray[i].posts[j]))
+        }
+      }
+    }
+    return myArr;
+  });
+
+  console.log(display_array)
+
+
+
+ 
+
+ 
+  
+
+
+
+
+  const rentButton = (value) => {
+    console.log(value)
+    
     // Her kan vi legge inn funksjonalitet for å leie bilen.
-    console.log(car);
-  };
 
-  const getAllCars = () => {
-    const carArray = JSON.parse(localStorage.getItem("userArray")) || [];
-    const allCars = carArray.map((user) => user.cars); // [[{car1}, {car2}], [{car3}, {car4}]]
-    setCars(allCars.flat()); // flat() is used to flatten the array
   };
-
-  useEffect(() => {
-    getAllCars();
-  }, []); // [] is used to run the function only once
 
   return (
     <>
       <h1>Alle biler til utleie</h1>
-      <section className={style.allCars}>
-        {cars.map((car) => (
-          <section key={car.id} className={style.car}>
-            <h3>{car.brand}</h3>
-            <p>{car.model}</p>
-            <p>{car.year}</p>
-            <p>{car.price} kr i mnd</p>
-            <img src={temp_img} alt={car.name} />
-            <button onClick={() => rentButton(car)}>Lei bil</button>
+        <section>
+        {display_array.map((value) => (
+          <section>
+            <p>Pris: {value.renting_out_price}</p>
+            <p>Text: {value.rentint_out_text}</p>
+            <p>Seter: {value.car.seter}</p>
+            <p>Brand: {value.car.brand}</p>
+            <p>Model: {value.car.model}</p>
+            <p>year: {value.car.year}</p>
+            <button onClick={() => rentButton(value)}>Lei bil</button>
           </section>
         ))}
       </section>
@@ -43,3 +59,6 @@ const AllCars = () => {
 };
 
 export default AllCars;
+
+//<h3>posts_local_array.car</h3>
+//<p>{posts_local_array.renting_out_price}</p>
