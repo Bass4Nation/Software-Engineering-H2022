@@ -3,6 +3,11 @@ import React from "react";
 
 const userArray = JSON.parse(localStorage.getItem("userArray"));
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+var postid = JSON.parse(localStorage.getItem("postid"))
+
+if (postid === null ){
+  localStorage.setItem("postid", "0");
+}
 
 const AddCar = () => {
   const [car, setCar] = useState({
@@ -25,8 +30,8 @@ const AddCar = () => {
   };
 
   const [post, setpost] = useState({
+    id: postid,
     title: "",
-    id: userArray[loggedInUser].EnsureUniqueId,
     renting_out_price: "",
     rentint_out_text: "",
     car: [],
@@ -36,9 +41,9 @@ const AddCar = () => {
     event.preventDefault();
 
     userArray[loggedInUser].posts.push(post);
-    userArray[loggedInUser].EnsureUniqueId =
-    userArray[loggedInUser].EnsureUniqueId + 1;
-    setpost({ ...post, id: userArray[loggedInUser].EnsureUniqueId});
+    postid = postid + 1;
+    localStorage.setItem("postid", JSON.stringify(postid));
+    setpost({...post});
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
@@ -50,11 +55,6 @@ const AddCar = () => {
         {userArray[loggedInUser].cars[i].name}
       </option>
     );
-  }
-
-  function handlechange(event) {
-    setpost(event.target.value);
-    console.log(event.target.value);
   }
 
   return (

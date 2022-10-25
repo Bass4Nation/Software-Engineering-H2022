@@ -31,8 +31,11 @@ const AllCars = () => {
 
 
 
-  const rentButton = (car) => {
+  const rentButton = (value) => {
+    console.log(value)
+    
     // Her kan vi legge inn funksjonalitet for å leie bilen.
+
   };
 
   return (
@@ -47,7 +50,7 @@ const AllCars = () => {
             <p>Brand: {value.car.brand}</p>
             <p>Model: {value.car.model}</p>
             <p>year: {value.car.year}</p>
-            <button onClick={() => rentButton()}>Lei bil</button>
+            <button onClick={() => rentButton(value)}>Lei bil</button>
           </section>
         ))}
       </section>
