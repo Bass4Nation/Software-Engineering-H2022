@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import React from "react";
 
-const userArray = JSON.parse(localStorage.getItem("userArray"));
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-var postid = JSON.parse(localStorage.getItem("postid"))
-
-if (postid === null ){
-  localStorage.setItem("postid", "0");
+var postid_cheack = JSON.parse(localStorage.getItem("postid"))
+if (postid_cheack === null) {
+  localStorage.setItem("postid", 0);
 }
 
+
 const AddCar = () => {
+  const userArray = JSON.parse(localStorage.getItem("userArray"));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  var [postid, setpostid] = useState(JSON.parse(localStorage.getItem("postid")))
+
+
   const [car, setCar] = useState({
-    id: userArray[loggedInUser].EnsureUniqueId,
+    id: 0,
     name: "",
     brand: "",
     model: "",
@@ -24,8 +27,10 @@ const AddCar = () => {
 
     userArray[loggedInUser].cars.push(car);
     userArray[loggedInUser].EnsureUniqueId =
-      userArray[loggedInUser].EnsureUniqueId + 1;
+    userArray[loggedInUser].EnsureUniqueId + 1;
     setCar({ ...car, id: userArray[loggedInUser].EnsureUniqueId });
+    console.log("Add")
+     console.log(postid)
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
@@ -35,19 +40,28 @@ const AddCar = () => {
     renting_out_price: "",
     rentint_out_text: "",
     car: [],
+    rented_out: false,
   });
 
   const addPosTtoArray = (event) => {
+    setpostid(postid + 1)
+    const test = postid + 1 //Async 
     event.preventDefault();
+    setpost({ ...post, id: test});
 
     userArray[loggedInUser].posts.push(post);
-    postid = postid + 1;
-    localStorage.setItem("postid", JSON.stringify(postid));
-    setpost({...post});
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
+
+  React.useEffect(() => {
+    localStorage.setItem("postid", JSON.stringify(postid));
+  }, [postid]); // <-- here put the parameter to listen
+
   
+
+
+
   const rendered = [];
   for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
     rendered.push(
@@ -61,25 +75,23 @@ const AddCar = () => {
     <>
       <h1>Lei ut</h1>
       <form onSubmit={addPosTtoArray}>
-      <label>Tittel</label>
+        <label>Tittel</label>
         <input
           type="text"
           name="title"
           value={post.title}
-          onChange={(e) =>
-            setpost({ ...post, title: e.target.value })
-          }
+          onChange={(e) => setpost({ ...post, title: e.target.value })}
         />
         <label>Velg bil</label>
         <select
           type="text"
           name="car"
           value={post.car}
-          onChange={(e) => setpost({ ...post, car: JSON.parse(e.target.value) })}
+          onChange={(e) =>
+            setpost({ ...post, car: JSON.parse(e.target.value) })
+          }
         >
-          <option value="None">
-        --Choose--
-      </option>
+          <option value="None">--Choose--</option>
           {rendered}
         </select>
         <br></br>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 const AllCars = () => {
 
@@ -22,18 +23,10 @@ const AllCars = () => {
   console.log(display_array)
 
 
-
- 
-
- 
-  
-
-
-
-
+  const navigate = useNavigate(); //https://reactrouter.com/en/main/hooks/use-navigate
   const rentButton = (value) => {
-    console.log(value)
-    
+    navigate("/payment", {state: value});
+
     // Her kan vi legge inn funksjonalitet for å leie bilen.
 
   };
