@@ -8,7 +8,6 @@ import App from "../../App";
 // import Main from "../../components/Main";
 // import Login from "../Login.js";
 
-// FIXME: Får ikke testet dette. Får ikke logget inn
 it("Check if Dashboard correctly logged in", () => {
   render(<App />);
 
@@ -24,7 +23,6 @@ it("Check if Dashboard correctly logged in", () => {
   userEvent.type(inputUsernameRegister, "test@mail.com");
   expect(screen.getByTestId("registerUsername")).toHaveValue("test@mail.com");
 
-  // expect(registerUserButton).toBeEnabled();
   fireEvent.click(screen.getByTestId("registerNewUserButton")); // User should be registered
   fireEvent.click(registerFormButton); // User should be registered
 
@@ -33,7 +31,6 @@ it("Check if Dashboard correctly logged in", () => {
   expect(screen.getByTestId("logginUsername")).toHaveValue("test@mail.com");
   fireEvent.click(screen.getByTestId("loginButton")); // User should be logged in
 
-  // FIXME: Fra her og nedover er det feil
   const navDashboard = screen.getByTestId("navDashboard");
   fireEvent.click(navDashboard); // Click on nav element: Min side
 

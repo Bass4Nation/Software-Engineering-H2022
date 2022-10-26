@@ -15,15 +15,6 @@ it("Checking if Layout are wrapping all routes in App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-// it("Testing if Main component is rendering without issues", () => {
-//   render(
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//   );
-//   const mainElement = screen.getByText("Velkommen til forsiden");
-//   expect(mainElement).toBeInTheDocument();
-// });
 
 // Crash Course jeg brukte :D https://www.youtube.com/watch?v=OVNjsIto9xM&t=2318s
 // Alle testene skal være mot krav, så vi må teste kravene våre
@@ -85,9 +76,8 @@ it("Render frontpage -> Loginpage -> Register test user -> frontpage", () => {
   fireEvent.click(screen.getByTestId("loginButton")); // User should be logged in
 
   //Should be on the frontpage and be logged in
-  // TODO: Go til dashboard for å sjekke innlogging status
 
-  // expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument();
+  expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument();
   // expect(screen.getByText("Velkommen til forsiden")).toBeInTheDocument();
 });
 

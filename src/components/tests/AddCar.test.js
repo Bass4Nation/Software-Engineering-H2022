@@ -32,7 +32,6 @@ it("Check if AddCar render without issues", () => {
   expect(screen.getByTestId("logginUsername")).toHaveValue("test@mail.com");
   fireEvent.click(screen.getByTestId("loginButton")); // User should be logged in
 
-  // FIXME: Fra her og nedover er det feil. Trur ikke logget inn
   const navAddCar = screen.getByTestId("navAddCar");
   fireEvent.click(navAddCar); // Click on nav element: Registrer bil
 
