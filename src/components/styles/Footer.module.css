@@ -1,5 +1,6 @@
-/* A header over nav showing page title */
-.header {
+/* Footer. Always at bottom of page but not fixed at bottom screen */
+
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;

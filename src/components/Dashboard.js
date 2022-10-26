@@ -1,5 +1,6 @@
 import React from "react";
-import { generateRandomId } from "./utils/RandId";
+// import { generateRandomId } from "./utils/RandId";
+import style from "./styles/Dashboard.module.css";
 // Brukerens profil/dashboard
 
 const Dashboard = () => {
@@ -9,7 +10,6 @@ const Dashboard = () => {
   // Skal også ha mulighet til å endre på brukerens data.
 
   const [user, setUser] = React.useState(userArray[loggedInUser] || []);
-  console.log(generateRandomId());
   const deleteCar = (car) => {
     for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
       if (userArray[loggedInUser].cars[i].id === car.id) {
@@ -53,56 +53,58 @@ const Dashboard = () => {
     }
   };
 
-
   return (
     <div>
-      <h1 >Dashboard</h1>
+      <h1 className={style.pageTitle}>Dashboard</h1>
       <section>
-        <h2 data-testid="DashboardTestID">Velkommen til din profil {user.username}!</h2>
+        <h2 className={style.title} data-testid="DashboardTestID">
+          Velkommen til din profil {user.username}!
+        </h2>
       </section>
+      <section className={style.AllSections}>
+        <section className={style.aSection}>
+          <h2 className={style.sectionTitle}>Your Rented cars:</h2>
+          {user.rented.map((value) => (
+            <section className={style.aElement}>
+              <p>owner: {userArray[value.userIndex].username}</p>
+              <p>
+                car:{" "}
+                {userArray[value.userIndex].posts[value.postsIndex].car.brand}
+                {userArray[value.userIndex].posts[value.postsIndex].car.model}
+                {userArray[value.userIndex].posts[value.postsIndex].car.year}
+              </p>
+              <button onClick={() => cancel_renting(value)}>
+                cancel renting
+              </button>
+            </section>
+          ))}
+        </section>
 
-      <section>
-        <h2>Your Rented cars:</h2>
-        {user.rented.map((value) => (
-          <section>
-            <p>owner: {userArray[value.userIndex].username}</p>
-            <p>
-              car:{" "}
-              {userArray[value.userIndex].posts[value.postsIndex].car.brand}
-              {userArray[value.userIndex].posts[value.postsIndex].car.model}
-              {userArray[value.userIndex].posts[value.postsIndex].car.year}
-            </p>
-            <button onClick={() => cancel_renting(value)}>
-              cancel renting
-            </button>
-          </section>
-        ))}
-      </section>
+        <section className={style.aSection}>
+          <h2 className={style.sectionTitle}>Your Posts:</h2>
+          {user.posts.map((value) => (
+            <section className={style.aElement}>
+              <h3>{value.title}</h3>
+              <p>Pris: {value.renting_out_price}</p>
+              <p>Text: {value.rentint_out_text}</p>
+              <button onClick={() => deletepost(value)}>Slett Post</button>
+            </section>
+          ))}
+        </section>
 
-      <section>
-        <h2>Your Posts:</h2>
-        {user.posts.map((value) => (
-          <section>
-            <h3>{value.title}</h3>
-            <p>Pris: {value.renting_out_price}</p>
-            <p>Text: {value.rentint_out_text}</p>
-            <button onClick={() => deletepost(value)}>Slett Post</button>
-          </section>
-        ))}
-      </section>
-
-      <section>
-        <h2>Your Registered Cars:</h2>
-        {user.cars.map((car) => (
-          <section>
-            <h3>{car.name}</h3>
-            <p>Merke: {car.brand}</p>
-            <p>Model: {car.model}</p>
-            <p>Årsmodell: {car.year}</p>
-            <p>Pris: {car.price} kr i mnd</p>
-            <button onClick={() => deleteCar(car)}>Slett bil</button>
-          </section>
-        ))}
+        <section className={style.aSection}>
+          <h2 className={style.sectionTitle}>Your Registered Cars:</h2>
+          {user.cars.map((car) => (
+            <section className={style.aElement}>
+              <h3>{car.name}</h3>
+              <p>Merke: {car.brand}</p>
+              <p>Model: {car.model}</p>
+              <p>Årsmodell: {car.year}</p>
+              <p>Pris: {car.price} kr i mnd</p>
+              <button onClick={() => deleteCar(car)}>Slett bil</button>
+            </section>
+          ))}
+        </section>
       </section>
     </div>
   );

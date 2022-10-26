@@ -1,5 +1,4 @@
-
-/* All cars */
+/* All cars available to rent  */
 .allCars {
   display: flex;
   flex-wrap: wrap;
@@ -8,25 +7,78 @@
   max-width: 1200px;
   padding: 0 20px;
 }
-.car{
-    margin: 0 20px 20px 20px;
-    width: 300px;
+/* All cars title */
+.allCarsTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  /* margin: 0 auto; */
+  text-align: center;
+  width: 100%;
 }
-.car img{
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+/* A car available to rent*/
+.car {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 5 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
 }
-.car button{
-    width: 100%;
-    height: 50px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
+
+.carRented{
+
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    filter: grayscale(100%);
 }
-.car button:hover{
-    background-color: #fff;
-    color: #000;
+
+
+/* A button for rent a car */
+.carButton {
+  background-color: #c50000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
 }
+.carButton:hover {
+  background-color: #fff;
+  color: #c50000;
+  border: 1px solid #c50000;
+}
+/* Car button disabled  */
+.carButtonDisabled {
+  cursor: not-allowed;
+
+  background-color: #c50000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+
+}
+/* Small car images */
+.carImg{
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+}
+

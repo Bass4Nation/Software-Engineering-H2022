@@ -1,10 +1,11 @@
-/* Darkmode global page with links white and no underline*/
-/* body {
-  background-color: #1a1a1a;
-  color: white;
+/* white background, all links removed decoration */
+body {
+  background-color: white;
+  color: black;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: 1.2em;
+  line-height: 1.5em;
   margin: 0;
   padding: 0;
-} */
+}
+
