@@ -1,8 +1,8 @@
 import React from "react";
 // Brukerens profil/dashboard
 const Dashboard = () => {
-  const userArray = JSON.parse(localStorage.getItem("userArray"));
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || 0;
   // Skal ta inn brukerens data fra "databasen" og vise det på siden.
   // Skal også ha mulighet til å endre på brukerens data.
 

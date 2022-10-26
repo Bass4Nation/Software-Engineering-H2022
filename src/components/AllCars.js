@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 
 const AllCars = () => {
 
-  const userArray = JSON.parse(localStorage.getItem("userArray"));
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || 0;
 
   
 
