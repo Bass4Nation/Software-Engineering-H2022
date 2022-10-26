@@ -35,9 +35,9 @@ it("Check if Dashboard correctly logged in", () => {
 
   // FIXME: Fra her og nedover er det feil
   const navDashboard = screen.getByTestId("navDashboard");
-  fireEvent.click(navDashboard); // Click on nav element: Registrer bil
+  fireEvent.click(navDashboard); // Click on nav element: Min side
 
-  // //Logged in user should be able to see the AddCar component
+  // //Logged in user should be able to see the Dashboard component
   const reqLogInText = screen.getByText("Velkommen til din profil test@mail.com!");
   expect(reqLogInText).toBeInTheDocument()});
 

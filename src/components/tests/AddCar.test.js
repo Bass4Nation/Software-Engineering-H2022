@@ -33,12 +33,12 @@ it("Check if AddCar render without issues", () => {
   fireEvent.click(screen.getByTestId("loginButton")); // User should be logged in
 
   // FIXME: Fra her og nedover er det feil. Trur ikke logget inn
-  // const navAddCar = screen.getByTestId("navAddCar");
-  // fireEvent.click(navAddCar); // Click on nav element: Registrer bil
+  const navAddCar = screen.getByTestId("navAddCar");
+  fireEvent.click(navAddCar); // Click on nav element: Registrer bil
 
   // //Logged in user should be able to see the AddCar component
-  // const reqLogInText = screen.getByTestId("testAddButton");
-  // expect(reqLogInText).toBeInTheDocument();
+  const reqLogInText = screen.getByTestId("testAddButton");
+  expect(reqLogInText).toBeInTheDocument();
 });
 
 // Hjelp til å lage tester under her

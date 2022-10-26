@@ -8,9 +8,9 @@ if (uniuniqueid_check === null) {
 
 
 const AddCar = () => {
-  const userArray = JSON.parse(localStorage.getItem("userArray"));
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  var [uniqueid, setuniqueid] = useState(JSON.parse(localStorage.getItem("uniqueid")))
+  const userArray = JSON.parse(localStorage.getItem("userArray") || "[]");
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser") || "[]");
+  var [uniqueid, setuniqueid] = useState(JSON.parse(localStorage.getItem("uniqueid")) || 0);
 
 
   const [car, setCar] = useState({
@@ -153,7 +153,7 @@ const AddCar = () => {
           value={car.price}
           onChange={(e) => setCar({ ...car, price: e.target.value })}
         />
-        <button onClick={addCarToCarArray}> Legg til bil</button>
+        <button onClick={addCarToCarArray} data-testid="testAddButton"> Legg til bil</button>
       </form>
     </>
   );
