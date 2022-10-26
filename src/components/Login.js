@@ -10,8 +10,8 @@ export default function Login(props) {
     username: "",
     isAdmin: false,
     cars: [],
-    EnsureUniqueId: 0,
     posts: [],
+    rented: [],
   });
 
   // Set Userdata
@@ -44,8 +44,8 @@ export default function Login(props) {
         username: event.target[0].value,
         isAdmin: event.target[1].checked,
         cars: [],
-        EnsureUniqueId: 0,
         posts: [],
+        rented: [],
       };
       setUserArray((prevArray) => [...prevArray, myObj]); //async
       setNotRegisteredUser();

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import React from "react";
 
-var postid_cheack = JSON.parse(localStorage.getItem("postid"))
-if (postid_cheack === null) {
-  localStorage.setItem("postid", 0);
+var uniuniqueid_check = JSON.parse(localStorage.getItem("uniqueid"))
+if (uniuniqueid_check === null) {
+  localStorage.setItem("uniqueid", 0);
 }
 
 
 const AddCar = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  var [postid, setpostid] = useState(JSON.parse(localStorage.getItem("postid")))
+  var [uniqueid, setuniqueid] = useState(JSON.parse(localStorage.getItem("uniqueid")))
 
 
   const [car, setCar] = useState({
-    id: 0,
+    id: uniqueid,
     name: "",
     brand: "",
     model: "",
@@ -26,16 +26,15 @@ const AddCar = () => {
     event.preventDefault();
 
     userArray[loggedInUser].cars.push(car);
-    userArray[loggedInUser].EnsureUniqueId =
-    userArray[loggedInUser].EnsureUniqueId + 1;
-    setCar({ ...car, id: userArray[loggedInUser].EnsureUniqueId });
-    console.log("Add")
-     console.log(postid)
+    setuniqueid(uniqueid + 1) //Async 
+    const synced_id = uniqueid + 1 
+    setCar({ ...car, id: synced_id });
+
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
   const [post, setpost] = useState({
-    id: postid,
+    id: uniqueid,
     title: "",
     renting_out_price: "",
     rentint_out_text: "",
@@ -44,10 +43,10 @@ const AddCar = () => {
   });
 
   const addPosTtoArray = (event) => {
-    setpostid(postid + 1)
-    const test = postid + 1 //Async 
+    setuniqueid(uniqueid + 1)//Async 
+    const synced_id = uniqueid + 1
     event.preventDefault();
-    setpost({ ...post, id: test});
+    setpost({ ...post, id: synced_id});
 
     userArray[loggedInUser].posts.push(post);
     localStorage.setItem("userArray", JSON.stringify(userArray));
@@ -55,8 +54,8 @@ const AddCar = () => {
 
 
   React.useEffect(() => {
-    localStorage.setItem("postid", JSON.stringify(postid));
-  }, [postid]); // <-- here put the parameter to listen
+    localStorage.setItem("uniqueid", JSON.stringify(uniqueid));
+  }, [uniqueid]); // <-- here put the parameter to listen
 
   
 
