@@ -9,7 +9,6 @@ export default function Login(props) {
   const [userData, setUserData] = React.useState({
     username: "",
     isAdmin: false,
-    EnsureUniqueId: 0,
     cars: [],
     posts: [],
     rented: [],
@@ -44,7 +43,6 @@ export default function Login(props) {
       const myObj = {
         username: event.target[0].value,
         isAdmin: event.target[1].checked,
-        EnsureUniqueId: 0,
         cars: [],
         posts: [],
         rented: [],

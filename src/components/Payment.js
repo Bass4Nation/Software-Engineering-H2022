@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Payment = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const postid = JSON.parse(localStorage.getItem("postid"))
+  const uniqueid = JSON.parse(localStorage.getItem("uniqueid"))
 
   const location = useLocation();
   console.log(location.state);
@@ -20,13 +20,13 @@ const Payment = () => {
         if (location.state.id === userArray[i].posts[j].id) {
           userArray[i].posts[j].rented_out = true;
           const myObj = {
-            key: postid,
+            key: uniqueid,
             userIndex: i,
             postsIndex: j,
           };
           userArray[loggedInUser].rented.push(myObj);
-          const newpostid = postid + 1;
-          localStorage.setItem("postid", JSON.stringify(newpostid));
+          const newuniqueid = uniqueid + 1;
+          localStorage.setItem("uniqueid", JSON.stringify(newuniqueid));
           localStorage.setItem("userArray", JSON.stringify(userArray));
           navigate("/");
         }

@@ -51,6 +51,7 @@ const Dashboard = () => {
     }
   };
 
+
   return (
     <div>
       <h1>Dashboard</h1>
@@ -106,3 +107,30 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+// function test(value) {
+//   console.log("RAN FUNCTION!")
+//   for (var i = 0; i < userArray.length; i++) {
+//     for (var j = 0; j < userArray[i].posts[j].length; j++) {
+//       console.log("ss")
+//       if (userArray[i].posts[j].key === value.key) {
+//         return user.rented.map((value) => (
+//           <section>
+//             <p>owner: {userArray[value.userIndex].username}</p>
+//             <p>
+//               car:{" "}
+//               {userArray[value.userIndex].posts[value.postsIndex].car.brand}
+//               {userArray[value.userIndex].posts[value.postsIndex].car.model}
+//               {userArray[value.userIndex].posts[value.postsIndex].car.year}
+//             </p>
+//             <button onClick={() => cancel_renting(value)}>
+//               cancel renting
+//             </button>
+//           </section>
+//         ));
+//       } else {
+//         console.log("gone");
+//       }
+//     }
+//   }
+// }
