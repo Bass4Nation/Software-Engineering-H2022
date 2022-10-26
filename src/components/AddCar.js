@@ -1,28 +1,20 @@
 import { useEffect, useState } from "react";
 import React from "react";
 
+var uniuniqueid_check = JSON.parse(localStorage.getItem("uniqueid"))
+if (uniuniqueid_check === null) {
+  localStorage.setItem("uniqueid", 0);
+}
+
+
 const AddCar = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray"));
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  var postid = JSON.parse(localStorage.getItem("postid"));
+  var [uniqueid, setuniqueid] = useState(JSON.parse(localStorage.getItem("uniqueid")))
 
-  if (postid === null) {
-    localStorage.setItem("postid", "0");
-  }
-
-  // a useState for car using userArray and loggedInUser to ensure unique Id
-  // const [car, setCar] = useState({
-  //   id: userArray[loggedInUser].cars.length,
-  //   brand: "",
-  //   name: "",
-  //   year: "",
-  //   model: "",
-  //   price: "",
-  //   image: "",
-  // });
 
   const [car, setCar] = useState({
-    id: userArray[loggedInUser].EnsureUniqueId,
+    id: uniqueid,
     name: "",
     brand: "",
     model: "",
@@ -34,43 +26,49 @@ const AddCar = () => {
     event.preventDefault();
 
     userArray[loggedInUser].cars.push(car);
-    userArray[loggedInUser].EnsureUniqueId =
-      userArray[loggedInUser].EnsureUniqueId + 1;
-    setCar({ ...car, id: userArray[loggedInUser].EnsureUniqueId });
+    setuniqueid(uniqueid + 1) //Async 
+    const synced_id = uniqueid + 1 
+    setCar({ ...car, id: synced_id });
+
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
   const [post, setpost] = useState({
-    id: postid,
+    id: uniqueid,
     title: "",
     renting_out_price: "",
     rentint_out_text: "",
     car: [],
+    rented_out: false,
   });
 
   const addPosTtoArray = (event) => {
+    setuniqueid(uniqueid + 1)//Async 
+    const synced_id = uniqueid + 1
     event.preventDefault();
+    setpost({ ...post, id: synced_id});
 
     userArray[loggedInUser].posts.push(post);
-    postid = postid + 1;
-    localStorage.setItem("postid", JSON.stringify(postid));
-    setpost({ ...post });
     localStorage.setItem("userArray", JSON.stringify(userArray));
   };
 
+
+  React.useEffect(() => {
+    localStorage.setItem("uniqueid", JSON.stringify(uniqueid));
+  }, [uniqueid]); // <-- here put the parameter to listen
+
+  
+
+
+
   const rendered = [];
-  if (userArray[loggedInUser].cars.length > 0) {
-    for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
-      rendered.push(
-        <option value={JSON.stringify(userArray[loggedInUser].cars[i])}>
-          {userArray[loggedInUser].cars[i].name}
-        </option>
-      );
-    }
+  for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
+    rendered.push(
+      <option value={JSON.stringify(userArray[loggedInUser].cars[i])}>
+        {userArray[loggedInUser].cars[i].name}
+      </option>
+    );
   }
-  const handleChange = (event) => {
-    setpost({ ...post, car: JSON.parse(event.target.value) });
-  };
 
   return (
     <>
@@ -131,35 +129,31 @@ const AddCar = () => {
         <input
           type="text"
           name="brand"
-          placeholder="Brand"
           value={car.brand}
-          onChange={handleChange}
+          onChange={(e) => setCar({ ...car, brand: e.target.value })}
         />
+        <label>Modell</label>
         <input
           type="text"
           name="model"
-          placeholder="Model"
           value={car.model}
-          onChange={handleChange}
+          onChange={(e) => setCar({ ...car, model: e.target.value })}
         />
+        <label>Årsmodell</label>
         <input
           type="text"
           name="year"
-          placeholder="Year"
           value={car.year}
-          onChange={handleChange}
+          onChange={(e) => setCar({ ...car, year: e.target.value })}
         />
         <label>seter</label>
         <input
           type="text"
           name="seats"
           value={car.price}
-          onChange={handleChange}
+          onChange={(e) => setCar({ ...car, price: e.target.value })}
         />
-        <button onClick={addCarToCarArray} data-testid="testAddButton">
-          {" "}
-          Legg til bil
-        </button>
+        <button onClick={addCarToCarArray}> Legg til bil</button>
       </form>
     </>
   );
