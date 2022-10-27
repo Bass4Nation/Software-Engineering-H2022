@@ -38,6 +38,7 @@ const AllCars = () => {
           <>
             <section className={value.rented_out ? style.carRented : style.car} key={value.id}>
               <p>Pris: {value.renting_out_price}</p>
+              <p>Tidspunkt: {value.time}</p>
               <p>Text: {value.rentint_out_text}</p>
               <p>Seter: {value.car.seter}</p>
               <p>Brand: {value.car.brand}</p>
