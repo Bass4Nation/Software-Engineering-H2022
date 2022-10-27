@@ -36,12 +36,33 @@ const Dashboard = () => {
         });
       }
     }
+    for (var j = 0; j < userArray.length; j++) {
+      //delete the "rented" array if the car is rented.
+      for (var k = 0; k < userArray[j].rented.length; k++) {
+        if (userArray[j].rented[k].key === value.id) {
+          userArray[loggedInUser].rented.splice(j, 1);
+          localStorage.setItem("userArray", JSON.stringify(userArray));
+          setUser({
+            ...user,
+            rented: userArray[loggedInUser].rented,
+          });
+        }
+      }
+    }
   };
 
   const cancel_renting = (value) => {
+    for (var j = 0; j < userArray.length; j++) {
+      for (var k = 0; k < userArray[j].posts.length; k++) {
+        if (userArray[j].posts[k].id === value.key) {
+          userArray[j].posts[k].rented_out = false;
+          localStorage.setItem("userArray", JSON.stringify(userArray));
+        }
+      }
+    }
     for (var i = 0; i < userArray[loggedInUser].rented.length; i++) {
       if (userArray[loggedInUser].rented[i].key === value.key) {
-        userArray[value.userIndex].posts[value.postsIndex].rented_out = false;
+        //     userArray[loggedInUser].posts[value.postsIndex].rented_out = false;
         userArray[loggedInUser].rented.splice(i, 1);
         localStorage.setItem("userArray", JSON.stringify(userArray));
         setUser({
@@ -66,13 +87,12 @@ const Dashboard = () => {
           <h2 className={style.sectionTitle}>Your Rented cars:</h2>
           {user.rented.map((value) => (
             <section className={style.aElement}>
-              <p>owner: {userArray[value.userIndex].username}</p>
+              <p>owner: {value.owner}</p>
+              <p>tidspunkt: {value.time}</p>
               <p>
-                car:{" "}
-                {userArray[value.userIndex].posts[value.postsIndex].car.brand}
-                {userArray[value.userIndex].posts[value.postsIndex].car.model}
-                {userArray[value.userIndex].posts[value.postsIndex].car.year}
+                car: {value.car.brand}-{value.car.model}-{value.car.year}
               </p>
+              <p>price: {value.price}</p>
               <button onClick={() => cancel_renting(value)}>
                 cancel renting
               </button>
@@ -85,6 +105,7 @@ const Dashboard = () => {
           {user.posts.map((value) => (
             <section className={style.aElement}>
               <h3>{value.title}</h3>
+              <p>tidspunkt: {value.time}</p>
               <p>Pris: {value.renting_out_price}</p>
               <p>Text: {value.rentint_out_text}</p>
               <button onClick={() => deletepost(value)}>Slett Post</button>

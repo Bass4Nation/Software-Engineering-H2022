@@ -36,9 +36,11 @@ const AddCar = () => {
 
   const [post, setpost] = useState({
     id: uniqueid,
+    owner: userArray[loggedInUser].username,
     title: "",
     renting_out_price: "",
     rentint_out_text: "",
+    time: "",
     car: [],
     rented_out: false,
   });
@@ -72,6 +74,13 @@ const AddCar = () => {
         <h1>Lei ut</h1>
         <form onSubmit={addPosTtoArray}>
           <label>Tittel</label>
+          <input
+            type="text"
+            time="time"
+            value={post.time}
+            onChange={(e) => setpost({ ...post, time: e.target.value })}
+          />
+          <label>Tidspunkt</label>
           <input
             type="text"
             name="title"
@@ -110,6 +119,7 @@ const AddCar = () => {
               setpost({ ...post, rentint_out_text: e.target.value })
             }
           />
+          
           <button> lei ut bil</button>
         </form>
       </section>
