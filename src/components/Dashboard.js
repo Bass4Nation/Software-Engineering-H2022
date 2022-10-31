@@ -88,11 +88,11 @@ const Dashboard = () => {
           {user.rented.map((value) => (
             <section className={style.aElement}>
               <p>owner: {value.owner}</p>
-              <p>tidspunkt: {value.time}</p>
+              <p>tidspunkt: fra {value.available_time} til {value.return_time}</p>
               <p>
-                car: {value.car.brand}-{value.car.model}-{value.car.year}
+                car: {value.car.brand}-{value.car.model} ({value.car.year})
               </p>
-              <p>price: {value.price}</p>
+              <p>price: {value.price}kr</p>
               <button onClick={() => cancel_renting(value)}>
                 cancel renting
               </button>
@@ -104,10 +104,13 @@ const Dashboard = () => {
           <h2 className={style.sectionTitle}>Your Posts:</h2>
           {user.posts.map((value) => (
             <section className={style.aElement}>
-              <h3>{value.title}</h3>
-              <p>tidspunkt: {value.time}</p>
-              <p>Pris: {value.renting_out_price}</p>
-              <p>Text: {value.rentint_out_text}</p>
+              <h3>{value.car.name}</h3>
+              <p>
+                {value.car.brand}-{value.car.model} ({value.car.year})
+              </p>
+              <p>fra {value.available_time}</p>
+              <p>til {value.return_time}</p>
+              <p>Pris: {value.renting_out_price}kr</p>
               <button onClick={() => deletepost(value)}>Slett Post</button>
             </section>
           ))}
@@ -118,10 +121,8 @@ const Dashboard = () => {
           {user.cars.map((car) => (
             <section className={style.aElement}>
               <h3>{car.name}</h3>
-              <p>Merke: {car.brand}</p>
-              <p>Model: {car.model}</p>
-              <p>Årsmodell: {car.year}</p>
-              <p>Pris: {car.price} kr i mnd</p>
+              <p>{car.brand} - {car.model} ({car.year})</p>
+              <p>Regnr: {car.regnr} </p>
               <button onClick={() => deleteCar(car)}>Slett bil</button>
             </section>
           ))}

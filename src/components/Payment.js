@@ -23,7 +23,8 @@ const Payment = () => {
             owner: location.state.owner,
             car: location.state.car,
             price: location.state.renting_out_price,
-            time: location.state.time,
+            available_time: location.state.available_time,
+            return_time: location.state.return_time,
           };
           userArray[loggedInUser].rented.push(myObj);
           localStorage.setItem("userArray", JSON.stringify(userArray));
@@ -41,7 +42,8 @@ const Payment = () => {
         {location.state.car.year}
       </p>
       <p>Pris: {location.state.renting_out_price}</p>
-      <p>Tidspunkt: {location.state.time}</p>
+      <p>Tidspunkt: {location.state.available_time} - {location.state.return_time}</p>
+      <p></p>
 
       <h3>Betaling håndteres av eksterene avhengihter</h3>
       <button onClick={handleCancel}>Cancel</button>

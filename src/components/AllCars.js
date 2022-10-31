@@ -18,6 +18,8 @@ const AllCars = () => {
     return myArr;
   });
 
+
+
   console.log(display_array);
 
   const navigate = useNavigate(); //https://reactrouter.com/en/main/hooks/use-navigate
@@ -37,14 +39,10 @@ const AllCars = () => {
         {display_array.map((value) => (
           <>
             <section className={value.rented_out ? style.carRented : style.car} key={value.id}>
-              <p>Pris: {value.renting_out_price}</p>
-              <p>Tidspunkt: {value.time}</p>
-              <p>Text: {value.rentint_out_text}</p>
-              <p>Seter: {value.car.seter}</p>
-              <p>Brand: {value.car.brand}</p>
-              <p>Model: {value.car.model}</p>
-              <p>year: {value.car.year}</p>
-              <p>rented_out; {String(value.rented_out)}</p>
+              <p>Pris: {value.renting_out_price} kr</p>
+              <p>Tilgjenglig: {value.available_time}</p>
+              <p>Returner: {value.return_time}</p>
+              <p>Bil: {value.car.brand} {value.car.model} ({value.car.year})</p>
               <img src="/temp_car_img.jpg" alt="car" 
               className={style.carImg}/>
               <button
