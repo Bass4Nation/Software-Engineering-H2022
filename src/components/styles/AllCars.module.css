@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-  max-width: 1200px;
+  /* max-width: 1200px;*/
   padding: 0 20px;
 }
 /* All cars title */
@@ -31,7 +31,6 @@
 }
 
 .carRented{
-
     display: flex;
     flex-direction: column;
     font-size: medium;
@@ -82,3 +81,14 @@
   object-fit: cover;
 }
 
+.filterform{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.mainContent{
+  display: flex;
+  flex-direction: row;
+
+}

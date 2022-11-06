@@ -49,7 +49,7 @@ const AddCar = () => {
     setuniqueid(uniqueid + 1); //Async
     const synced_id = uniqueid + 1;
     event.preventDefault();
-    setpost({ ...post, id: synced_id });
+    setpost({ ...post, id: synced_id,});
 
     userArray[loggedInUser].posts.push(post);
     localStorage.setItem("userArray", JSON.stringify(userArray));
