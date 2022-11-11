@@ -127,7 +127,7 @@ export default function Login(props) {
 
   return (
     <div>
-      {!RegisterRender && ( // This whole register form is conditionally rendered
+      {!RegisterRender && ( //This whole register form is conditionally rendered
         <div className={style.login}>
           <h2>Login</h2>
           <form onSubmit={loginSubmitHandleChange}>
@@ -149,7 +149,7 @@ export default function Login(props) {
         <div className={style.login}>
           <h2>Register account</h2>
           <form onSubmit={RegisterSubmitHandleChange}>
-          <label htmlFor="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
               placeholder="username"
