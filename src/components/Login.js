@@ -59,30 +59,13 @@ export default function Login(props) {
     });
   }
 
-  //   if (checkUsernameAvailability(event.target[0].value)) {
-  //     setisNameTaken(<p>Username is already registered!</p>);
-  //   } else {
-  //     const myObj = {
-  //       username: event.target[0].value,
-  //       isAdmin: event.target[1].checked,
-  //       cars: [],
-  //       posts: [],
-  //       rented: [],
-  //     };
-  //     setUserArray((prevArray) => [...prevArray, myObj]); //async
-  //     setNotRegisteredUser();
-  //   }
-  // }
 
   //Every Time userArray gets changed, it saves to LocalStorage
   React.useEffect(() => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
   }, [userArray]);
 
-  //just a print
-  React.useEffect(() => {
-    console.log(userArray, "- user Array has changed");
-  }, [userArray]); // <-- here put the parameter to listen
+
 
   //Conditionally render either login or register
   const [RegisterRender, setRegisterRender] = React.useState(false);
@@ -109,7 +92,7 @@ export default function Login(props) {
 
   //Ikke Helt ferdig
   const [NotRegisteredUser, setNotRegisteredUser] = React.useState(
-    <p>no users are registered!</p>
+    <p></p>
   );
   function loginSubmitHandleChange(event) {
     event.preventDefault();
@@ -118,7 +101,7 @@ export default function Login(props) {
         navigate("/");
         localStorage.setItem("loggedInUser", i);
       } else {
-        setNotRegisteredUser(<p>Username is not registered!</p>);
+        setNotRegisteredUser(<p>{loginUsername} is not a registered user!</p>);
       }
     }
   }
