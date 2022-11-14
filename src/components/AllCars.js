@@ -7,6 +7,7 @@ const AllCars = () => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || 0;
 
   var AllPosts = [];
+
   for (let i = 0; i < userArray.length; i++) {
     if (userArray[i].posts.length > 0) {
       for (let j = 0; j < userArray[i].posts.length; j++) {
@@ -19,13 +20,25 @@ const AllCars = () => {
 
   const navigate = useNavigate(); //https://reactrouter.com/en/main/hooks/use-navigate
   const rentButton = (value) => {
-    //KANSKJE VI SKAL FJENRE POSTEN HVIS DEN ER UTLEID=?!!
     if (value.rented_out) {
       console.log("utleid!");
     } else {
       navigate("/payment", { state: value });
     }
   };
+
+  function adminDeletePost(value) {
+    console.log(value);
+    for (var i = 0; i < userArray.length; i++) {
+      for (var j = 0; j < userArray[i].posts.length; j++) {
+        if (userArray[i].posts[j].id === value.id) {
+          userArray[i].posts.splice(j, 1);
+          localStorage.setItem("userArray", JSON.stringify(userArray));
+        }
+      }
+    }
+    window.location.reload(false); //force reload the page
+  }
 
   const [highprice, sethighprice] = React.useState();
   const [remove_rented_out, setremove_rented_out] = React.useState(false);
@@ -74,7 +87,6 @@ const AllCars = () => {
       myArr = myArr.filter(
         (array) => new Date(array.return_time) >= new Date(availablefrom)
       );
-
     }
 
     if (availableto) {
@@ -91,21 +103,21 @@ const AllCars = () => {
       <h1 className={style.allCarsTitle}>Alle biler til utleie</h1>
       <section className={style.mainContent}>
         <section className={style.filterform}>
-          <label htmlFor="highprice">Highest price</label>
+          <label htmlFor="highprice">Høyeste pris</label>
           <input
             type="number"
             name="highprice"
             value={highprice}
             onChange={handleHighPriceChange}
           />
-          <label htmlFor="avaiablefrom">Avaiable from</label>
+          <label htmlFor="avaiablefrom">Tilgjenglig fra</label>
           <input
             type="datetime-local"
             name="avaiablefrom"
             value={availablefrom}
             onChange={handleAvailablefrom}
           />
-          <label htmlFor="availableto">Avaiable to</label>
+          <label htmlFor="availableto">Tilgjenglig til</label>
           <input
             type="datetime-local"
             name="availableto"
@@ -120,10 +132,10 @@ const AllCars = () => {
               checked={remove_rented_out}
               onChange={toggleRented_out}
             />
-            <label htmlFor="rented_out">hide rented out cars</label>
+            <label htmlFor="rented_out">gjem utleide biler</label>
           </section>
 
-          <button onClick={FilterSubmit}>filter</button>
+          <button onClick={FilterSubmit}>filtrer</button>
         </section>
         <section className={style.allCars}>
           {display_array.map((value) => (
@@ -132,6 +144,11 @@ const AllCars = () => {
                 className={value.rented_out ? style.carRented : style.car}
                 key={value.id}
               >
+                {userArray[loggedInUser].isAdmin && (
+                  <button onClick={() => adminDeletePost(value)}>
+                    Admin slett post
+                  </button>
+                )}
                 <p>Pris: {value.renting_out_price} kr</p>
                 <p>Tilgjenglig: {value.available_time}</p>
                 <p>Returner: {value.return_time}</p>
