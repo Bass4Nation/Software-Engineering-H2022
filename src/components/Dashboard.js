@@ -84,24 +84,26 @@ const Dashboard = () => {
       </section>
       <section className={style.AllSections}>
         <section className={style.aSection}>
-          <h2 className={style.sectionTitle}>Your Rented cars:</h2>
+          <h2 className={style.sectionTitle}>Dine leide biler:</h2>
           {user.rented.map((value) => (
             <section className={style.aElement}>
               <p>owner: {value.owner}</p>
-              <p>tidspunkt: fra {value.available_time} til {value.return_time}</p>
+              <p>
+                tidspunkt: fra {value.available_time} til {value.return_time}
+              </p>
               <p>
                 car: {value.car.brand}-{value.car.model} ({value.car.year})
               </p>
               <p>price: {value.price}kr</p>
               <button onClick={() => cancel_renting(value)}>
-                cancel renting
+                avbestille leie
               </button>
             </section>
           ))}
         </section>
 
         <section className={style.aSection}>
-          <h2 className={style.sectionTitle}>Your Posts:</h2>
+          <h2 className={style.sectionTitle}>Dine annonser</h2>
           {user.posts.map((value) => (
             <section className={style.aElement}>
               <h3>{value.car.name}</h3>
@@ -111,17 +113,19 @@ const Dashboard = () => {
               <p>fra {value.available_time}</p>
               <p>til {value.return_time}</p>
               <p>Pris: {value.renting_out_price}kr</p>
-              <button onClick={() => deletepost(value)}>Slett Post</button>
+              <button onClick={() => deletepost(value)}>Slett annonse</button>
             </section>
           ))}
         </section>
 
         <section className={style.aSection}>
-          <h2 className={style.sectionTitle}>Your Registered Cars:</h2>
+          <h2 className={style.sectionTitle}>Dine registerte biler:</h2>
           {user.cars.map((car) => (
             <section className={style.aElement}>
               <h3>{car.name}</h3>
-              <p>{car.brand} - {car.model} ({car.year})</p>
+              <p>
+                {car.brand} - {car.model} ({car.year})
+              </p>
               <p>Regnr: {car.regnr} </p>
               <button onClick={() => deleteCar(car)}>Slett bil</button>
             </section>
@@ -133,30 +137,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// function test(value) {
-//   console.log("RAN FUNCTION!")
-//   for (var i = 0; i < userArray.length; i++) {
-//     for (var j = 0; j < userArray[i].posts[j].length; j++) {
-//       console.log("ss")
-//       if (userArray[i].posts[j].key === value.key) {
-//         return user.rented.map((value) => (
-//           <section>
-//             <p>owner: {userArray[value.userIndex].username}</p>
-//             <p>
-//               car:{" "}
-//               {userArray[value.userIndex].posts[value.postsIndex].car.brand}
-//               {userArray[value.userIndex].posts[value.postsIndex].car.model}
-//               {userArray[value.userIndex].posts[value.postsIndex].car.year}
-//             </p>
-//             <button onClick={() => cancel_renting(value)}>
-//               cancel renting
-//             </button>
-//           </section>
-//         ));
-//       } else {
-//         console.log("gone");
-//       }
-//     }
-//   }
-// }
