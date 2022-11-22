@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./styles/AllCars.module.css";
 
 const AllCars = () => {
@@ -78,8 +78,6 @@ const AllCars = () => {
       );
     }
 
-    const test123 = new Date(availablefrom);
-
     if (availablefrom) {
       myArr = myArr.filter(
         (array) => new Date(array.available_time) <= new Date(availablefrom)
@@ -96,6 +94,15 @@ const AllCars = () => {
     }
 
     setdisplay_array(myArr);
+  }
+
+  const noPostes = () => {
+    return(
+    <section className={style.noPosts}>
+      <h1>Ingen biler lastet opp i databasen enda</h1>
+      <p>Prøv å registrer en bil og legg den ut til utleie etter innlogging</p>
+    </section>
+    )
   }
 
   return (
@@ -138,7 +145,7 @@ const AllCars = () => {
           <button onClick={FilterSubmit}>filtrer</button>
         </section>
         <section className={style.allCars}>
-          {display_array.map((value) => (
+          {display_array.length === 0 ? noPostes() : display_array.map((value) => (
             <>
               <section
                 className={value.rented_out ? style.carRented : style.car}
@@ -178,6 +185,3 @@ const AllCars = () => {
 };
 
 export default AllCars;
-
-//<h3>posts_local_array.car</h3>
-//<p>{posts_local_array.renting_out_price}</p>
