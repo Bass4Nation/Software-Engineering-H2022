@@ -47,5 +47,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-//      {!loggedIn ? <button onClick={changeLogStatus}>Logg ut</button> : <></>}

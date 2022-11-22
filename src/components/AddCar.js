@@ -82,6 +82,7 @@ const AddCar = () => {
             type="datetime-local"
             name="available_time"
             value={post.available_time}
+            data-testid="inputAvailableTimeStart"
             onChange={
               (e) => setpost({ ...post, available_time: e.target.value })}
           />
@@ -91,6 +92,7 @@ const AddCar = () => {
             type="datetime-local"
             name="return_time"
             value={post.return_time}
+            data-testid="inputAvailableTimeEnd"
             onChange={
               (e) => setpost({ ...post, return_time: e.target.value })}
           />
@@ -99,6 +101,7 @@ const AddCar = () => {
             type="text"
             name="car"
             value={car.value}
+            data-testid="selectRegistredCar"
             onChange={(e) =>
               setpost({ ...post, car: JSON.parse(e.target.value) })}
           >
@@ -111,11 +114,13 @@ const AddCar = () => {
             type="number"
             name="renting_out_price"
             value={post.renting_out_price}
+            data-testid="inputCarRentPrice"
+
             onChange={(e) =>
               setpost({ ...post, renting_out_price: e.target.value })
             }
           />
-          <button> lei ut bil</button>
+          <button data-testid="rentOutButtonTest"> lei ut bil</button>
         </form>
       </section>
 
@@ -127,6 +132,7 @@ const AddCar = () => {
             type="text"
             name="name"
             value={car.name}
+            data-testid="inputCarName"
             onChange={(e) => setCar({ ...car, name: e.target.value })}
           />
           <label>Merke</label>
@@ -134,6 +140,7 @@ const AddCar = () => {
             type="text"
             name="brand"
             value={car.brand}
+            data-testid="inputCarBrand"
             onChange={(e) => setCar({ ...car, brand: e.target.value })}
           />
           <label>Modell</label>
@@ -141,20 +148,23 @@ const AddCar = () => {
             type="text"
             name="model"
             value={car.model}
+            data-testid="inputCarModel"
             onChange={(e) => setCar({ ...car, model: e.target.value })}
           />
           <label>Årsmodell</label>
           <input
             type="number"
             name="year"
+            data-testid="inputCarYear"
             value={car.year}
             onChange={(e) => setCar({ ...car, year: e.target.value })}
           />
-          <label>Registreringsnummber</label>
+          <label>Registreringsnumber</label>
           <input
             type="text"
             name="regnr"
             value={car.regnr}
+            data-testid="inputCarNumber"
             onChange={(e) => setCar({ ...car, regnr: e.target.value })}
           />
 
