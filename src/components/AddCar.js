@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./styles/AddCar.module.css";
 import React from "react";
 
@@ -49,7 +49,7 @@ const AddCar = () => {
     setuniqueid(uniqueid + 1); //Async
     const synced_id = uniqueid + 1;
     event.preventDefault();
-    setpost({ ...post, id: synced_id,});
+    setpost({ ...post, id: synced_id });
 
     userArray[loggedInUser].posts.push(post);
     localStorage.setItem("userArray", JSON.stringify(userArray));
@@ -59,18 +59,14 @@ const AddCar = () => {
     localStorage.setItem("uniqueid", JSON.stringify(uniqueid));
   }, [uniqueid]); // <-- here put the parameter to listen
 
-
-  
-
   const options = [];
   for (var i = 0; i < userArray[loggedInUser].cars.length; i++) {
     options.push(
-      <option value={JSON.stringify(userArray[loggedInUser].cars[i])}>
+      <option key={i} value={JSON.stringify(userArray[loggedInUser].cars[i])}>
         {userArray[loggedInUser].cars[i].name}
       </option>
     );
   }
-  console.log(post)
 
   return (
     <>
@@ -83,27 +79,29 @@ const AddCar = () => {
             name="available_time"
             value={post.available_time}
             data-testid="inputAvailableTimeStart"
-            onChange={
-              (e) => setpost({ ...post, available_time: e.target.value })}
+            onChange={(e) =>
+              setpost({ ...post, available_time: e.target.value })
+            }
           />
           <label>Utleid til</label>
           <input
-          min={post.available_time}
+            min={post.available_time}
             type="datetime-local"
             name="return_time"
             value={post.return_time}
             data-testid="inputAvailableTimeEnd"
-            onChange={
-              (e) => setpost({ ...post, return_time: e.target.value })}
+            onChange={(e) => setpost({ ...post, return_time: e.target.value })}
           />
           <label>Velg bil: </label>
-          <select
+          <select 
             type="text"
             name="car"
             value={car.value}
             data-testid="selectRegistredCar"
             onChange={(e) =>
-              setpost({ ...post, car: JSON.parse(e.target.value) })}
+              setpost({ ...post, car: JSON.parse(e.target.value) })
+            }
+            
           >
             <option>--Choose--</option>
             {options}
@@ -115,7 +113,6 @@ const AddCar = () => {
             name="renting_out_price"
             value={post.renting_out_price}
             data-testid="inputCarRentPrice"
-
             onChange={(e) =>
               setpost({ ...post, renting_out_price: e.target.value })
             }
@@ -128,7 +125,7 @@ const AddCar = () => {
         <h3>Her kan du registrere bilen din til utleie</h3>
         <form>
           <label>Egendefinert navn</label>
-          <input      
+          <input
             type="text"
             name="name"
             value={car.name}

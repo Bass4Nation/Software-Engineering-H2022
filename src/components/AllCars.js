@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./styles/AllCars.module.css";
+import { generateRandomId } from "./utils/RandId";
 
 const AllCars = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
@@ -21,14 +22,14 @@ const AllCars = () => {
   const navigate = useNavigate(); //https://reactrouter.com/en/main/hooks/use-navigate
   const rentButton = (value) => {
     if (value.rented_out) {
-      console.log("utleid!");
+      // console.log("utleid!");
     } else {
       navigate("/payment", { state: value });
     }
   };
 
   function adminDeletePost(value) {
-    console.log(value);
+    // console.log(value);
     for (var i = 0; i < userArray.length; i++) {
       for (var j = 0; j < userArray[i].posts.length; j++) {
         if (userArray[i].posts[j].id === value.id) {
@@ -62,11 +63,11 @@ const AllCars = () => {
 
   function FilterSubmit(event) {
     event.preventDefault();
-    console.log(availablefrom);
-    console.log(availableto);
+    // console.log(availablefrom);
+    // console.log(availableto);
 
     var myArr = AllPosts;
-    console.log(myArr);
+    // console.log(myArr);
 
     if (remove_rented_out) {
       myArr = myArr.filter((array) => array.rented_out === false);
@@ -139,17 +140,17 @@ const AllCars = () => {
               checked={remove_rented_out}
               onChange={toggleRented_out}
             />
-            <label htmlFor="rented_out">gjem utleide biler</label>
+            <label htmlFor="rented_out">Skjul utleide biler</label>
           </section>
 
           <button onClick={FilterSubmit}>filtrer</button>
         </section>
-        <section className={style.allCars}>
-          {display_array.length === 0 ? noPostes() : display_array.map((value) => (
+        <section className={style.allCars} >
+          {display_array.length === 0 ? noPostes() : display_array.map((value, index) => (
             <>
               <section
                 className={value.rented_out ? style.carRented : style.car}
-                key={value.id}
+                key={index}
               >
                 {userArray[loggedInUser].isAdmin && (
                   <button onClick={() => adminDeletePost(value)}>

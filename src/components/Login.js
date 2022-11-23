@@ -101,7 +101,7 @@ export default function Login(props) {
         navigate("/");
         localStorage.setItem("loggedInUser", i);
       } else {
-        setNotRegisteredUser(<p>{loginUsername} is not a registered user!</p>);
+        setNotRegisteredUser(<p data-testid="testNotRegistredMessage">{loginUsername} is not a registered user!</p>);
       }
     }
   }

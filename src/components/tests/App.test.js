@@ -2,6 +2,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
+import { generateRandomId } from "../utils/RandId";
 //Components
 import App from "../../App";
 // import Main from "../../components/Main";
@@ -145,5 +146,23 @@ it("Test to register a car and after checks if database is not empty", () => {
   fireEvent.click(navFrontpage); 
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument(); // Should be on the frontpage and be logged in
   expect(screen.getByText("Test merke",{exact: false})).toBeTruthy(); 
-  
+});
+
+it("Testing if a unregistred username is trying to log in,", () => {
+  render(
+    <BrowserRouter>
+      <Login />
+    </BrowserRouter>
+  );
+  const username = generateRandomId(); // Generate random username for testing
+  const inputUsername = screen.getByTestId("logginUsername");
+  const button = screen.getByTestId("loginButton");
+  userEvent.type(inputUsername, username);
+  expect(screen.getByTestId("logginUsername")).toHaveValue(username);
+
+  fireEvent.click(button); // Using fireEvent simulate to click the button
+
+  const errorMessage = screen.getByTestId("testNotRegistredMessage");
+
+  expect(errorMessage).toBeInTheDocument(username + " is not a registred user!");
 });
