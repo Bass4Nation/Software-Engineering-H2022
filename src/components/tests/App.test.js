@@ -7,6 +7,7 @@ import { generateRandomId } from "../utils/RandId";
 import App from "../../App";
 // import Main from "../../components/Main";
 import Login from "../Login.js";
+import AddCar from "../AddCar";
 
 // Create a test where it checks if database is empty
 it("checks if database is empty", () => {
@@ -127,7 +128,7 @@ it("Test to register a car and after checks if database is not empty", () => {
     target: { value: "2022-02-02T18:11" },
   });
   userEvent.type(inputCarRentPrice, "1000");
-  userEvent.selectOptions(selectRegistredCar, 'Test bil');
+  userEvent.selectOptions(selectRegistredCar, "Test bil");
 
   expect(screen.getByText("Test bil")).toBeInTheDocument();
   expect(screen.getByTestId("inputAvailableTimeStart")).toHaveValue(
@@ -137,15 +138,17 @@ it("Test to register a car and after checks if database is not empty", () => {
     "2022-02-02T18:11"
   );
   expect(screen.getByTestId("inputCarRentPrice")).toHaveValue(1000);
-  expect(screen.getByTestId("selectRegistredCar")).toBeInTheDocument("Test bil");
+  expect(screen.getByTestId("selectRegistredCar")).toBeInTheDocument(
+    "Test bil"
+  );
 
   const rentOutButtonTest = screen.getByTestId("rentOutButtonTest");
   fireEvent.click(rentOutButtonTest); // Add car to rent out database
 
   const navFrontpage = screen.getByTestId("navMain");
-  fireEvent.click(navFrontpage); 
+  fireEvent.click(navFrontpage);
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument(); // Should be on the frontpage and be logged in
-  expect(screen.getByText("Test merke",{exact: false})).toBeTruthy(); 
+  expect(screen.getByText("Test merke", { exact: false })).toBeTruthy();
 });
 
 it("Testing if a unregistred username is trying to log in,", () => {
@@ -164,5 +167,40 @@ it("Testing if a unregistred username is trying to log in,", () => {
 
   const errorMessage = screen.getByTestId("testNotRegistredMessage");
 
-  expect(errorMessage).toBeInTheDocument(username + " is not a registred user!");
+  expect(errorMessage).toBeInTheDocument(
+    username + " is not a registred user!"
+  );
+});
+
+it("Check render time for App.js", () => {
+  const timerMillisecondsStart = new Date().getTime();
+  render(<App />);
+  const timerMillisecondsEnd = new Date().getTime();
+  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
+  console.log("Render time for App.js: " + timerMilliseconds + " milliseconds");
+  expect(timerMilliseconds).toBeLessThan(1000);
+});
+it("Check render time for Login.js", () => {
+  const timerMillisecondsStart = new Date().getTime();
+  render(
+    <BrowserRouter>
+      <Login />
+    </BrowserRouter>
+  );
+  const timerMillisecondsEnd = new Date().getTime();
+  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
+  console.log("Render time for Login.js: " + timerMilliseconds + " milliseconds");
+  expect(timerMilliseconds).toBeLessThan(1000);
+});
+it("Check render time for AddCar.js", () => {
+  const timerMillisecondsStart = new Date().getTime();
+  render(
+    <BrowserRouter>
+      <AddCar />
+    </BrowserRouter>
+  );
+  const timerMillisecondsEnd = new Date().getTime();
+  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
+  console.log("Render time for AddCar.js: " + timerMilliseconds + " milliseconds");
+  expect(timerMilliseconds).toBeLessThan(1000);
 });
