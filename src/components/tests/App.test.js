@@ -23,8 +23,6 @@ it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-
-
 // Tester to krav. Registrer og logg inn
 it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
   render(<App />);
@@ -111,7 +109,6 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
   fireEvent.click(rentOutButtonTest); // Add car to rent out database
   const timerMillisecondsStart = new Date().getTime();
 
-
   const navFrontpage = screen.getByTestId("navMain");
   fireEvent.click(navFrontpage);
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument(); // Should be on the frontpage and be logged in
@@ -119,10 +116,7 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
   const timerMillisecondsEnd = new Date().getTime();
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(5000);
-
 });
-
-
 
 // Krav
 it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
@@ -130,7 +124,5 @@ it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
   render(<App />);
   const timerMillisecondsEnd = new Date().getTime();
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
-  console.log("Render time for App.js: " + timerMilliseconds + " milliseconds");
   expect(timerMilliseconds).toBeLessThan(1000);
 });
-

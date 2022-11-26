@@ -5,10 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 //Components
 import App from "../../App";
 import AddCar from "../AddCar";
-// import Main from "../../components/Main";
-// import Login from "../Login.js";
-
-
 
 it("Sjekker om AddCar render uten problemer.", () => {
   render(<App />);
@@ -52,6 +48,6 @@ it("Sjekker om render tid for AddCar.js er 1000ms eller mindre", () => {
   );
   const timerMillisecondsEnd = new Date().getTime();
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
-  console.log("Render time for AddCar.js: " + timerMilliseconds + " milliseconds");
+
   expect(timerMilliseconds).toBeLessThan(1000);
 });

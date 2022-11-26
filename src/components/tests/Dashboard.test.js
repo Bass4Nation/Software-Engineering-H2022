@@ -1,12 +1,8 @@
 // Test libraries
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 //Components
 import App from "../../App";
-// import AddCar from "../AddCar";
-// import Main from "../../components/Main";
-// import Login from "../Login.js";
 
 it("Sjekker om brukeren kommer til riktig dashboard ved innlogging", () => {
   render(<App />);
@@ -35,6 +31,8 @@ it("Sjekker om brukeren kommer til riktig dashboard ved innlogging", () => {
   fireEvent.click(navDashboard); // Click on nav element: Min side
 
   // //Logged in user should be able to see the Dashboard component
-  const reqLogInText = screen.getByText("Velkommen til din profil test@mail.com!");
-  expect(reqLogInText).toBeInTheDocument()});
-
+  const reqLogInText = screen.getByText(
+    "Velkommen til din profil test@mail.com!"
+  );
+  expect(reqLogInText).toBeInTheDocument();
+});
