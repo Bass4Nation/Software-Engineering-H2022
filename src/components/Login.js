@@ -1,7 +1,6 @@
 import React from "react";
-import useEffect from "react";
 import style from "./styles/Login.module.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //////////////////////////////REGISTER LOGIC ///////////////////
 // Her kan vi putte mer data om brukerkonotene som blir registrert
@@ -77,22 +76,12 @@ export default function Login(props) {
   const [loginUsername, setloginUsername] = React.useState("");
   function loginHandleChange(event) {
     setloginUsername(event.target.value);
-    // console.log(loginUsername); // For å sjekke om det funker.
   }
 
-  function checkUsernameAvailability(nameToCheck) {
-    for (var i = 0; i < userArray.length; i++) {
-      if (userArray[i].username === nameToCheck) {
-        return true;
-      }
-    }
-  }
+  const navigate = useNavigate(); 
 
-  const navigate = useNavigate(); //
-
-  //Ikke Helt ferdig
   const [NotRegisteredUser, setNotRegisteredUser] = React.useState(
-    <p></p>
+    <p data-testid="testNotRegistredMessage"></p>
   );
   function loginSubmitHandleChange(event) {
     event.preventDefault();
@@ -100,6 +89,7 @@ export default function Login(props) {
       if (userArray[i].username === loginUsername) {
         navigate("/");
         localStorage.setItem("loggedInUser", i);
+
       } else {
         setNotRegisteredUser(<p data-testid="testNotRegistredMessage">{loginUsername} is not a registered user!</p>);
       }
@@ -163,6 +153,4 @@ export default function Login(props) {
   );
 }
 
-function test() {
-  return <p>ssd</p>;
-}
+

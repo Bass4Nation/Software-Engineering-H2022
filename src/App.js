@@ -1,9 +1,5 @@
-// import { Route, HashRouter as Router, Routes } from "react-router-dom";
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { v4 } from "uuid";
-
 
 import "./App.css";
 import Login from "./components/Login.js";
@@ -20,9 +16,9 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/" element={<AllCars />} />
+            <Route path="/" element={<AllCars/>} />
             <Route path="/login" element={<Login />} />
-            <Route path="/registrer-bil" element={<AddCar key={v4}/>} />
+            <Route path="/registrer-bil" element={<AddCar/>} />
             <Route path="/dashboard" element={<Dashboard />} />  
             <Route path="/payment" element={<Payment />} />
           </Routes>

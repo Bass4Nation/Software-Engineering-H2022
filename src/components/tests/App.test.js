@@ -1,13 +1,9 @@
 // Test libraries
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
-import { generateRandomId } from "../utils/RandId";
 //Components
 import App from "../../App";
 // import Main from "../../components/Main";
-import Login from "../Login.js";
-import AddCar from "../AddCar";
 
 // Create a test where it checks if database is empty
 it("Sjekker om databasen er tom", () => {
@@ -27,40 +23,9 @@ it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-it("I første render, så kan du klikke på login knappen", () => {
-  render(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>
-  );
-  const loginButton = screen.getByTestId("loginButton");
 
-  expect(loginButton).toBeEnabled();
-});
 
-it("Skal sjekke om register form knappen tar brukeren til registrer bruker siden", () => {
-  render(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>
-  );
-  const button = screen.getByTestId("registerFormButton");
-  fireEvent.click(button); // Using fireEvent simulate to click the button
-
-  expect(screen.getByText("Register account")).toBeInTheDocument();
-});
-
-it("Sjekker om inputfelt for brukernavn eksisterer.", () => {
-  render(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>
-  );
-  const inputUsername = screen.getByTestId("logginUsername");
-  expect(inputUsername).toBeInTheDocument();
-});
-
-// Krav
+// Tester to krav. Registrer og logg inn
 it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
   render(<App />);
 
@@ -157,26 +122,7 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
 
 });
 
-it("Tester om en uregistrert bruker prøver å logge seg inn", () => {
-  render(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>
-  );
-  const username = generateRandomId(); // Generate random username for testing
-  const inputUsername = screen.getByTestId("logginUsername");
-  const button = screen.getByTestId("loginButton");
-  userEvent.type(inputUsername, username);
-  expect(screen.getByTestId("logginUsername")).toHaveValue(username);
 
-  fireEvent.click(button); // Using fireEvent simulate to click the button
-
-  const errorMessage = screen.getByTestId("testNotRegistredMessage");
-
-  expect(errorMessage).toBeInTheDocument(
-    username + " is not a registred user!"
-  );
-});
 
 // Krav
 it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
@@ -188,30 +134,3 @@ it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
   expect(timerMilliseconds).toBeLessThan(1000);
 });
 
-// Krav
-it("Sjekker om render tid for Login.js er 1000ms eller mindre", () => {
-  const timerMillisecondsStart = new Date().getTime();
-  render(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>
-  );
-  const timerMillisecondsEnd = new Date().getTime();
-  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
-  console.log("Render time for Login.js: " + timerMilliseconds + " milliseconds");
-  expect(timerMilliseconds).toBeLessThan(1000);
-});
-
-// Krav
-it("Sjekker om render tid for AddCar.js er 1000ms eller mindre", () => {
-  const timerMillisecondsStart = new Date().getTime();
-  render(
-    <BrowserRouter>
-      <AddCar />
-    </BrowserRouter>
-  );
-  const timerMillisecondsEnd = new Date().getTime();
-  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
-  console.log("Render time for AddCar.js: " + timerMilliseconds + " milliseconds");
-  expect(timerMilliseconds).toBeLessThan(1000);
-});

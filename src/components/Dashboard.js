@@ -86,49 +86,55 @@ const Dashboard = () => {
         <section className={style.aSection}>
           <h2 className={style.sectionTitle}>Dine leide biler:</h2>
           {user.rented.map((value) => (
-            <section className={style.aElement}>
-              <p>owner: {value.owner}</p>
-              <p>
-                tidspunkt: fra {value.available_time} til {value.return_time}
-              </p>
-              <p>
-                car: {value.car.brand}-{value.car.model} ({value.car.year})
-              </p>
-              <p>price: {value.price}kr</p>
-              <button onClick={() => cancel_renting(value)}>
-                avbestille leie
-              </button>
-            </section>
+            <React.Fragment key={value.key}>
+              <section className={style.aElement}>
+                <p>owner: {value.owner}</p>
+                <p>
+                  tidspunkt: fra {value.available_time} til {value.return_time}
+                </p>
+                <p>
+                  car: {value.car.brand}-{value.car.model} ({value.car.year})
+                </p>
+                <p>price: {value.price}kr</p>
+                <button onClick={() => cancel_renting(value)}>
+                  avbestille leie
+                </button>
+              </section>
+            </React.Fragment>
           ))}
         </section>
 
         <section className={style.aSection}>
           <h2 className={style.sectionTitle}>Dine annonser</h2>
           {user.posts.map((value) => (
-            <section className={style.aElement}>
-              <h3>{value.car.name}</h3>
-              <p>
-                {value.car.brand}-{value.car.model} ({value.car.year})
-              </p>
-              <p>fra {value.available_time}</p>
-              <p>til {value.return_time}</p>
-              <p>Pris: {value.renting_out_price}kr</p>
-              <button onClick={() => deletepost(value)}>Slett annonse</button>
-            </section>
+            <React.Fragment key={value.id}>
+              <section className={style.aElement}>
+                <h3>{value.car.name}</h3>
+                <p>
+                  {value.car.brand}-{value.car.model} ({value.car.year})
+                </p>
+                <p>fra {value.available_time}</p>
+                <p>til {value.return_time}</p>
+                <p>Pris: {value.renting_out_price}kr</p>
+                <button onClick={() => deletepost(value)}>Slett annonse</button>
+              </section>
+            </React.Fragment>
           ))}
         </section>
 
         <section className={style.aSection}>
           <h2 className={style.sectionTitle}>Dine registerte biler:</h2>
           {user.cars.map((car) => (
-            <section className={style.aElement}>
-              <h3>{car.name}</h3>
-              <p>
-                {car.brand} - {car.model} ({car.year})
-              </p>
-              <p>Regnr: {car.regnr} </p>
-              <button onClick={() => deleteCar(car)}>Slett bil</button>
-            </section>
+            <React.Fragment key={car.id}>
+              <section className={style.aElement}>
+                <h3>{car.name}</h3>
+                <p>
+                  {car.brand} - {car.model} ({car.year})
+                </p>
+                <p>Regnr: {car.regnr} </p>
+                <button onClick={() => deleteCar(car)}>Slett bil</button>
+              </section>
+            </React.Fragment>
           ))}
         </section>
       </section>

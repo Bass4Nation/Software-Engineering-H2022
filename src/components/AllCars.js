@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./styles/AllCars.module.css";
-import { generateRandomId } from "./utils/RandId";
+
 
 const AllCars = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
@@ -145,12 +145,12 @@ const AllCars = () => {
 
           <button onClick={FilterSubmit}>filtrer</button>
         </section>
+
         <section className={style.allCars} >
-          {display_array.length === 0 ? noPostes() : display_array.map((value, index) => (
-            <>
+          {display_array.length === 0 ? noPostes() : display_array.map((value) => (
+            <React.Fragment key={value.id}>
               <section
                 className={value.rented_out ? style.carRented : style.car}
-                key={index}
               >
                 {userArray[loggedInUser].isAdmin && (
                   <button onClick={() => adminDeletePost(value)}>
@@ -177,7 +177,7 @@ const AllCars = () => {
                   {value.rented_out ? "Utleid" : "Lei bilen"}
                 </button>
               </section>
-            </>
+            </React.Fragment>
           ))}
         </section>
       </section>

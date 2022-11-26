@@ -5,7 +5,6 @@ const Payment = () => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   const location = useLocation();
-  console.log(location.state);
 
   const navigate = useNavigate();
 

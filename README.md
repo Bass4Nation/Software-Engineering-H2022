@@ -16,7 +16,7 @@
 ## Hvordan kjøre prosjektet
 (For å kjøre prosjektet må du ha gjort stegene i "Oppsett" først)
 1. Kjør `npm start` for å starte prosjektet
-2. Gå til `http://localhost:3000` i nettleseren din. Viss du får en feilmelding om at porten er opptatt, så står det i terminalen hvilken port du må gå til.
+2. Gå til `http://localhost:3000` i nettleseren din. Viss du får en feilmelding om at porten er opptatt, så står det i terminalen hvilken port du må gå til i terminalen.
 
 ![CMD instrukser](https://github.com/Bass4Nation/Software-Engineering-H2022/blob/main/README%20IMAGES/PowerShell%20instrukser.png?raw=true)
 
@@ -25,8 +25,8 @@
 (For å kjøre testene må du ha gjort stegene i "Oppsett" først)
 1. Kjør `npm test` for å kjøre testene
 
-<!-- q: How to add style to images in markdown?
-a:   -->
+<!-- q: How to add style to images in Markdown?
+a:    -->
 
 
 ## Tester disse kravene fra prosjektbeskrivelsen
@@ -52,4 +52,4 @@ Programmet skal ikke krasje <!-- Blir kanskje sjekket med de fleste tester. Om d
 
 ### Krav 4 - 30 - Det skal være mulig å legge ut annonser for utleie av biler
 * Denne blir testet i Dashboard.test.js ved at den prøver å legge ut en annonse og sjekker om den blir lagt ut.
-* 
+  
