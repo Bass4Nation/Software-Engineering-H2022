@@ -8,7 +8,7 @@ import App from "../../App";
 // import Main from "../../components/Main";
 // import Login from "../Login.js";
 
-it("Check if AddCar render without issues", () => {
+it("Sjekker om AddCar render uten problemer.", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");

@@ -8,7 +8,7 @@ import App from "../../App";
 // import Main from "../../components/Main";
 // import Login from "../Login.js";
 
-it("Check if Dashboard correctly logged in", () => {
+it("Sjekker om brukeren kommer til riktig dashboard ved innlogging", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");
@@ -38,5 +38,3 @@ it("Check if Dashboard correctly logged in", () => {
   const reqLogInText = screen.getByText("Velkommen til din profil test@mail.com!");
   expect(reqLogInText).toBeInTheDocument()});
 
-// Hjelp til å lage tester under her
-//To use getByTestId you need to add data-testid="whatever Id you want" to the element you want to test

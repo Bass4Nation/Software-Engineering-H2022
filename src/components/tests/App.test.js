@@ -10,7 +10,7 @@ import Login from "../Login.js";
 import AddCar from "../AddCar";
 
 // Create a test where it checks if database is empty
-it("checks if database is empty", () => {
+it("Sjekker om databasen er tom", () => {
   render(<App />);
   expect(
     screen.getByText("Ingen biler lastet opp i databasen enda")
@@ -19,7 +19,7 @@ it("checks if database is empty", () => {
 
 // Create a test where it checks if database is not empty
 
-it("Checking if Layout are wrapping all routes in App.js", () => {
+it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
   render(<App />);
   const header = screen.getByText("Gruppe 2");
   const footer = screen.getByText("© 2022 - Gruppe 2");
@@ -27,9 +27,7 @@ it("Checking if Layout are wrapping all routes in App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-// Crash Course jeg brukte :D https://www.youtube.com/watch?v=OVNjsIto9xM&t=2318s
-// Alle testene skal være mot krav, så vi må teste kravene våre
-it("on initial render, you can click the Login button", () => {
+it("I første render, så kan du klikke på login knappen", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -40,7 +38,7 @@ it("on initial render, you can click the Login button", () => {
   expect(loginButton).toBeEnabled();
 });
 
-it("Should check if register form button takes user to register user page", () => {
+it("Skal sjekke om register form knappen tar brukeren til registrer bruker siden", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -52,7 +50,7 @@ it("Should check if register form button takes user to register user page", () =
   expect(screen.getByText("Register account")).toBeInTheDocument();
 });
 
-it("Check if inputfield for username exist", () => {
+it("Sjekker om inputfelt for brukernavn eksisterer.", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -62,7 +60,8 @@ it("Check if inputfield for username exist", () => {
   expect(inputUsername).toBeInTheDocument();
 });
 
-it("Render frontpage -> Loginpage -> Register test user -> frontpage", () => {
+// Krav
+it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");
@@ -89,7 +88,8 @@ it("Render frontpage -> Loginpage -> Register test user -> frontpage", () => {
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument();
 });
 
-it("Test to register a car and after checks if database is not empty", () => {
+// Krav
+it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", () => {
   render(<App />);
 
   const navRegistrerBil = screen.getByTestId("navAddCar");
@@ -144,14 +144,20 @@ it("Test to register a car and after checks if database is not empty", () => {
 
   const rentOutButtonTest = screen.getByTestId("rentOutButtonTest");
   fireEvent.click(rentOutButtonTest); // Add car to rent out database
+  const timerMillisecondsStart = new Date().getTime();
+
 
   const navFrontpage = screen.getByTestId("navMain");
   fireEvent.click(navFrontpage);
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument(); // Should be on the frontpage and be logged in
   expect(screen.getByText("Test merke", { exact: false })).toBeTruthy();
+  const timerMillisecondsEnd = new Date().getTime();
+  const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
+  expect(timerMilliseconds).toBeLessThan(5000);
+
 });
 
-it("Testing if a unregistred username is trying to log in,", () => {
+it("Tester om en uregistrert bruker prøver å logge seg inn", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -172,7 +178,8 @@ it("Testing if a unregistred username is trying to log in,", () => {
   );
 });
 
-it("Check render time for App.js", () => {
+// Krav
+it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(<App />);
   const timerMillisecondsEnd = new Date().getTime();
@@ -180,7 +187,9 @@ it("Check render time for App.js", () => {
   console.log("Render time for App.js: " + timerMilliseconds + " milliseconds");
   expect(timerMilliseconds).toBeLessThan(1000);
 });
-it("Check render time for Login.js", () => {
+
+// Krav
+it("Sjekker om render tid for Login.js er 1000ms eller mindre", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(
     <BrowserRouter>
@@ -192,7 +201,9 @@ it("Check render time for Login.js", () => {
   console.log("Render time for Login.js: " + timerMilliseconds + " milliseconds");
   expect(timerMilliseconds).toBeLessThan(1000);
 });
-it("Check render time for AddCar.js", () => {
+
+// Krav
+it("Sjekker om render tid for AddCar.js er 1000ms eller mindre", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(
     <BrowserRouter>
