@@ -46,7 +46,8 @@ const Payment = () => {
 
       <h3>Betaling håndteres av eksterene avhengihter</h3>
       <button onClick={handleCancel}>Avbryt</button>
-      <button onClick={handlePay}>Betal</button>
+      <button data-testid="payButton" onClick={handlePay}>Betal</button>
+
     </div>
   );
 };

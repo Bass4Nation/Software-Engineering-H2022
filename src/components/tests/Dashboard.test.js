@@ -36,3 +36,185 @@ it("Sjekker om brukeren kommer til riktig dashboard ved innlogging", () => {
   );
   expect(reqLogInText).toBeInTheDocument();
 });
+
+
+const userArray = [
+  {
+    "username": "Per",
+    "isAdmin": false,
+    "cars": [
+      {
+        "id": 0,
+        "name": "Min Bil",
+        "brand": "Kia",
+        "model": "Pikanto",
+        "year": "2018",
+        "regnr": "SF2023"
+      }
+    ],
+    "posts": [
+      {
+        "id": 0,
+        "owner": "Per",
+        "renting_out_price": "400",
+        "rentint_out_text": "",
+        "available_time": "2022-11-27T17:18",
+        "return_time": "2022-11-29T17:18",
+        "car": {
+          "id": 0,
+          "name": "Min Bil",
+          "brand": "Kia",
+          "model": "Pikanto",
+          "year": "2018",
+          "regnr": "SF2023"
+        },
+        "rented_out": true
+      }
+    ],
+    "rented": []
+  },
+  {
+    "username": "Bob",
+    "isAdmin": false,
+    "cars": [
+      {
+        "id": 2,
+        "name": "Min Chevrolet ",
+        "brand": "Chevrolet",
+        "model": "Silverado 1500",
+        "year": "2020",
+        "regnr": "1000"
+      }
+    ],
+    "posts": [
+      {
+        "id": 2,
+        "owner": "Bob",
+        "renting_out_price": "123",
+        "rentint_out_text": "",
+        "available_time": "",
+        "return_time": "",
+        "car": {
+          "id": 2,
+          "name": "Min Chevrolet ",
+          "brand": "Chevrolet",
+          "model": "Silverado 1500",
+          "year": "2020",
+          "regnr": "1000"
+        },
+        "rented_out": false
+      }
+    ],
+    "rented": [
+      {
+        "key": 0,
+        "owner": "Per",
+        "car": {
+          "id": 0,
+          "name": "Min Bil",
+          "brand": "Kia",
+          "model": "Pikanto",
+          "year": "2018",
+          "regnr": "SF2023"
+        },
+        "price": "400",
+        "available_time": "2022-11-27T17:18",
+        "return_time": "2022-11-29T17:18"
+      }
+    ]
+  }
+]
+
+it("cancel_renting removed from ui", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  const cancel_renting = screen.getByTestId("cancel_renting");
+  expect(cancel_renting).toBeInTheDocument();
+  fireEvent.click(cancel_renting)
+  expect(cancel_renting).not.toBeInTheDocument();
+});
+
+it("deletepost removed from ui", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  const deletepost = screen.getByTestId("deletepost");
+  expect(deletepost).toBeInTheDocument();
+  fireEvent.click(deletepost)
+  expect(deletepost).not.toBeInTheDocument();
+
+});
+
+it("deleteCar removed from ui", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  const deleteCar = screen.getByTestId("deleteCar");
+  expect(deleteCar).toBeInTheDocument();
+  fireEvent.click(deleteCar)
+  expect(deleteCar).not.toBeInTheDocument();
+});
+
+const userArray_deleted = [
+  {
+    "username": "Per",
+    "isAdmin": false,
+    "cars": [
+      {
+        "id": 0,
+        "name": "Min Bil",
+        "brand": "Kia",
+        "model": "Pikanto",
+        "year": "2018",
+        "regnr": "SF2023"
+      }
+    ],
+    "posts": [
+      {
+        "id": 0,
+        "owner": "Per",
+        "renting_out_price": "400",
+        "rentint_out_text": "",
+        "available_time": "2022-11-27T17:18",
+        "return_time": "2022-11-29T17:18",
+        "car": {
+          "id": 0,
+          "name": "Min Bil",
+          "brand": "Kia",
+          "model": "Pikanto",
+          "year": "2018",
+          "regnr": "SF2023"
+        },
+        "rented_out": false
+      }
+    ],
+    "rented": []
+  },
+  {
+    "username": "Bob",
+    "isAdmin": false,
+    "cars": [],
+    "posts": [],
+    "rented": []
+  }
+]
+
+it("Deletefunctions removed from localstorage", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  fireEvent.click(screen.getByTestId("cancel_renting"))
+  fireEvent.click(screen.getByTestId("deletepost"))
+  fireEvent.click(screen.getByTestId("deleteCar"))
+
+  expect(localStorage.getItem("userArray")).toEqual(JSON.stringify(userArray_deleted))
+});

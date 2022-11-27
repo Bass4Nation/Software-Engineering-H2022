@@ -176,6 +176,7 @@ const AllCars = () => {
                   className={
                     value.rented_out ? style.carButtonDisabled : style.carButton
                   }
+                  data-testid="rentButton"
                   onClick={() => rentButton(value)}
                 >
                   {value.rented_out ? "Utleid" : "Lei bilen"}
