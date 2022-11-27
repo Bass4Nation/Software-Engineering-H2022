@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./styles/AllCars.module.css";
 
-
 const AllCars = () => {
   const userArray = JSON.parse(localStorage.getItem("userArray")) || [];
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || 0;
@@ -28,18 +27,24 @@ const AllCars = () => {
     }
   };
 
-  function adminDeletePost(value) {
+  // Delete post from database and update display_array to reflect the change
+  const adminDeletePost = (value) => {
     // console.log(value);
-    for (var i = 0; i < userArray.length; i++) {
-      for (var j = 0; j < userArray[i].posts.length; j++) {
-        if (userArray[i].posts[j].id === value.id) {
-          userArray[i].posts.splice(j, 1);
-          localStorage.setItem("userArray", JSON.stringify(userArray));
+    for (let i = 0; i < userArray.length; i++) {
+      if (userArray[i].posts.length > 0) {
+        for (let j = 0; j < userArray[i].posts.length; j++) {
+          if (userArray[i].posts[j].id === value.id) {
+            userArray[i].posts.splice(j, 1);
+            localStorage.setItem("userArray", JSON.stringify(userArray));
+            setdisplay_array(display_array.filter((item) => item.id !== value.id));
+          }
         }
       }
     }
-    window.location.reload(false); //force reload the page
-  }
+  };
+  
+
+
 
   const [highprice, sethighprice] = React.useState();
   const [remove_rented_out, setremove_rented_out] = React.useState(false);
@@ -98,13 +103,15 @@ const AllCars = () => {
   }
 
   const noPostes = () => {
-    return(
-    <section className={style.noPosts}>
-      <h1>Ingen biler lastet opp i databasen enda</h1>
-      <p>Prøv å registrer en bil og legg den ut til utleie etter innlogging</p>
-    </section>
-    )
-  }
+    return (
+      <section className={style.noPosts}>
+        <h1>Ingen biler lastet opp i databasen enda</h1>
+        <p>
+          Prøv å registrer en bil og legg den ut til utleie etter innlogging
+        </p>
+      </section>
+    );
+  };
 
   return (
     <>
@@ -115,7 +122,7 @@ const AllCars = () => {
           <input
             type="number"
             name="highprice"
-            value={highprice}
+            value={highprice || ""}
             onChange={handleHighPriceChange}
             data-testid="highprice"
           />
@@ -123,7 +130,7 @@ const AllCars = () => {
           <input
             type="datetime-local"
             name="avaiablefrom"
-            value={availablefrom}
+            value={availablefrom || ""}
             onChange={handleAvailablefrom}
             data-testid="avaiablefrom"
           />
@@ -131,7 +138,7 @@ const AllCars = () => {
           <input
             type="datetime-local"
             name="availableto"
-            value={availableto}
+            value={availableto || ""}
             min={availablefrom}
             onChange={handleAvailableto}
             data-testid="availableto"
@@ -147,9 +154,12 @@ const AllCars = () => {
             <label htmlFor="rented_out">Skjul utleide biler</label>
           </section>
 
-          <button data-testid="filterButton" onClick={FilterSubmit}>filtrer</button>
+          <button data-testid="filterButton" onClick={FilterSubmit}>
+            filtrer
+          </button>
         </section>
 
+<<<<<<< Updated upstream
         <section className={style.allCars} >
           {display_array.length === 0 ? noPostes() : display_array.map((value) => (
             <React.Fragment key={value.id}>
@@ -184,6 +194,49 @@ const AllCars = () => {
               </section>
             </React.Fragment>
           ))}
+=======
+        <section className={style.allCars}>
+          {display_array.length === 0
+            ? noPostes()
+            : display_array.map((value) => (
+                <React.Fragment key={value.id}>
+                  <section
+                    className={value.rented_out ? style.carRented : style.car}
+                  >
+                    {userArray[loggedInUser].isAdmin && (
+                      <button
+                        data-testid="AdminDelete"
+                        onClick={() => adminDeletePost(value)}
+                      >
+                        Admin slett post
+                      </button>
+                    )}
+                    <p>Pris: {value.renting_out_price} kr</p>
+                    <p>Tilgjenglig: {value.available_time}</p>
+                    <p>Returner: {value.return_time}</p>
+                    <p>
+                      Bil: {value.car.brand} {value.car.model} ({value.car.year}
+                      )
+                    </p>
+                    <img
+                      src="/temp_car_img.jpg"
+                      alt="car"
+                      className={style.carImg}
+                    />
+                    <button
+                      className={
+                        value.rented_out
+                          ? style.carButtonDisabled
+                          : style.carButton
+                      }
+                      onClick={() => rentButton(value)}
+                    >
+                      {value.rented_out ? "Utleid" : "Lei bilen"}
+                    </button>
+                  </section>
+                </React.Fragment>
+              ))}
+>>>>>>> Stashed changes
         </section>
       </section>
     </>
