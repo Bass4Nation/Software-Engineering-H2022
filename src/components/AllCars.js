@@ -159,42 +159,6 @@ const AllCars = () => {
           </button>
         </section>
 
-<<<<<<< Updated upstream
-        <section className={style.allCars} >
-          {display_array.length === 0 ? noPostes() : display_array.map((value) => (
-            <React.Fragment key={value.id}>
-              <section
-                className={value.rented_out ? style.carRented : style.car}
-              >
-                {userArray[loggedInUser].isAdmin && (
-                  <button data-testid="AdminDelete" onClick={() => adminDeletePost(value)}>
-                    Admin slett post
-                  </button>
-                )}
-                <p>Pris: {value.renting_out_price} kr</p>
-                <p>Tilgjenglig: {value.available_time}</p>
-                <p>Returner: {value.return_time}</p>
-                <p>
-                  Bil: {value.car.brand} {value.car.model} ({value.car.year})
-                </p>
-                <img
-                  src="/temp_car_img.jpg"
-                  alt="car"
-                  className={style.carImg}
-                />
-                <button
-                  className={
-                    value.rented_out ? style.carButtonDisabled : style.carButton
-                  }
-                  data-testid="rentButton"
-                  onClick={() => rentButton(value)}
-                >
-                  {value.rented_out ? "Utleid" : "Lei bilen"}
-                </button>
-              </section>
-            </React.Fragment>
-          ))}
-=======
         <section className={style.allCars}>
           {display_array.length === 0
             ? noPostes()
@@ -224,6 +188,7 @@ const AllCars = () => {
                       className={style.carImg}
                     />
                     <button
+                    data-testid="rentButton"
                       className={
                         value.rented_out
                           ? style.carButtonDisabled
@@ -236,7 +201,6 @@ const AllCars = () => {
                   </section>
                 </React.Fragment>
               ))}
->>>>>>> Stashed changes
         </section>
       </section>
     </>
