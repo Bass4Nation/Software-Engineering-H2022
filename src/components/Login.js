@@ -58,13 +58,10 @@ export default function Login(props) {
     });
   }
 
-
   //Every Time userArray gets changed, it saves to LocalStorage
   React.useEffect(() => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
   }, [userArray]);
-
-
 
   //Conditionally render either login or register
   const [RegisterRender, setRegisterRender] = React.useState(false);
@@ -78,7 +75,7 @@ export default function Login(props) {
     setloginUsername(event.target.value);
   }
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [NotRegisteredUser, setNotRegisteredUser] = React.useState(
     <p data-testid="testNotRegistredMessage"></p>
@@ -89,9 +86,12 @@ export default function Login(props) {
       if (userArray[i].username === loginUsername) {
         navigate("/");
         localStorage.setItem("loggedInUser", i);
-
       } else {
-        setNotRegisteredUser(<p data-testid="testNotRegistredMessage">{loginUsername} is not a registered user!</p>);
+        setNotRegisteredUser(
+          <p data-testid="testNotRegistredMessage">
+            {loginUsername} is not a registered user!
+          </p>
+        );
       }
     }
   }
@@ -139,6 +139,7 @@ export default function Login(props) {
               checked={userData.isAdmin}
               onChange={registerHandleChange}
               name="isAdmin"
+              data-testid="isAdminCheck"
             />
             {isNameTaken}
             <button data-testid="registerNewUserButton">Register User</button>
@@ -152,5 +153,3 @@ export default function Login(props) {
     </div>
   );
 }
-
-

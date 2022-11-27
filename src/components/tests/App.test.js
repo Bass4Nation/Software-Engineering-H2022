@@ -116,6 +116,7 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
   const timerMillisecondsEnd = new Date().getTime();
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(5000);
+
 });
 
 // Krav
@@ -126,3 +127,7 @@ it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(1000);
 });
+
+//it("Registering and logging in as admin", () => {
+
+//});

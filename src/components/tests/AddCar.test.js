@@ -51,3 +51,4 @@ it("Sjekker om render tid for AddCar.js er 1000ms eller mindre", () => {
 
   expect(timerMilliseconds).toBeLessThan(1000);
 });
+

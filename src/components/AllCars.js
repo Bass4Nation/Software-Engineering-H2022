@@ -153,7 +153,7 @@ const AllCars = () => {
                 className={value.rented_out ? style.carRented : style.car}
               >
                 {userArray[loggedInUser].isAdmin && (
-                  <button onClick={() => adminDeletePost(value)}>
+                  <button data-testid="AdminDelete" onClick={() => adminDeletePost(value)}>
                     Admin slett post
                   </button>
                 )}
