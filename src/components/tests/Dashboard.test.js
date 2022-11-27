@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 //Components
 import App from "../../App";
 
-it("Sjekker om brukeren kommer til riktig dashboard ved innlogging", () => {
+it("Checking if user is directed to their dashboard after login", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");
@@ -231,7 +231,7 @@ it("see rented cars", () => {
 });
 
 //Krav 22, Brukere skal kunne se sine annonser 
-it("see rented cars", () => {
+it("see posted cars", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 4);
   localStorage.setItem("loggedInUser", 1);
@@ -241,7 +241,7 @@ it("see rented cars", () => {
 });
 
 //Krav 23, Brukere skal kunne se sine registrerte biler. 
-it("see rented cars", () => {
+it("see registred cars", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 4);
   localStorage.setItem("loggedInUser", 1);

@@ -7,7 +7,8 @@ import { generateRandomId } from "../utils/RandId";
 import Login from "../Login.js";
 
 // Krav
-it("Sjekker om render tid for Login.js er 1000ms eller mindre", () => {
+
+it("Checking if render time for Login.js is less than 1 second", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(
     <BrowserRouter>
@@ -18,8 +19,8 @@ it("Sjekker om render tid for Login.js er 1000ms eller mindre", () => {
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(1000);
 });
-
-it("Tester om en uregistrert bruker prøver å logge seg inn", async () => {
+  
+it("Testing if a unregistred user is trying to log in", async () => {
   render(
     <BrowserRouter>
       <Login />
@@ -40,8 +41,8 @@ it("Tester om en uregistrert bruker prøver å logge seg inn", async () => {
     username + " is not a registred user!"
   );
 });
-
-it("I første render, så kan du klikke på login knappen", () => {
+  
+it("In first render, checking if user can click on login button", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -52,7 +53,7 @@ it("I første render, så kan du klikke på login knappen", () => {
   expect(loginButton).toBeEnabled();
 });
 
-it("Skal sjekke om register form knappen tar brukeren til registrer bruker siden", () => {
+it("Checking if register form button is taking user to register form page", () => {
   render(
     <BrowserRouter>
       <Login />
@@ -64,7 +65,7 @@ it("Skal sjekke om register form knappen tar brukeren til registrer bruker siden
   expect(screen.getByText("Register account")).toBeInTheDocument();
 });
 
-it("Sjekker om inputfelt for brukernavn eksisterer.", () => {
+it("Checking if inputfield for username exists in Login.js", () => {
   render(
     <BrowserRouter>
       <Login />

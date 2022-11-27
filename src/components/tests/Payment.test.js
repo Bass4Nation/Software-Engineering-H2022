@@ -1,7 +1,5 @@
 // Test libraries
 import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 
 //Components
 import App from "../../App";
@@ -51,7 +49,7 @@ const userArray = [
 ];
 
 //Tester Krav 9, 10. Brukere skal kunne leie en valgt bil, Bruker skal tas til en kjøper side     
-it("leie bil", () => {
+it("Rent car via buy button", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 2);
   localStorage.setItem("loggedInUser", 1);

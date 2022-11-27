@@ -24,7 +24,7 @@ it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
 });
 
 // Tester krav 1 og 2. Det skal være mulig å registrere nye brukerkontoer, Det skal være mulig å logge seg inn med registeret brukerkonto
-it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
+it("Rendering frotpage -> Login page -> Register a test user -> back to frontpage", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");
@@ -60,7 +60,7 @@ Brukere skal logge seg inn for å reservere en bil,
 Programmet skal ikke bruke lengre enn 5 sekunder for å vise utleie data, 
 Systemet skal kunne kjøres som en nettside
 */
-it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", () => {
+it("Test for register a car and after check if the database is not empty", () => {
   render(<App />);
 
   const navRegistrerBil = screen.getByTestId("navAddCar");
@@ -125,9 +125,8 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(5000);
 });
-
-// Krav
-it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
+  
+it("Checking if render time for App.js is less than 1 second or less", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(<App />);
   const timerMillisecondsEnd = new Date().getTime();
@@ -135,6 +134,4 @@ it("Sjekker om render tid for App.js er 1000ms eller mindre", () => {
   expect(timerMilliseconds).toBeLessThan(1000);
 });
 
-//it("Registering and logging in as admin", () => {
 
-//});

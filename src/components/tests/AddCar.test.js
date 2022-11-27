@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "../../App";
 import AddCar from "../AddCar";
 
-it("Sjekker om AddCar render uten problemer.", () => {
+it("Checking if AddCar component renders correctly.", () => {
   render(<App />);
 
   const navLogin = screen.getByTestId("navLogin");
@@ -38,8 +38,8 @@ it("Sjekker om AddCar render uten problemer.", () => {
   expect(reqLogInText).toBeInTheDocument();
 });
 
-// Krav
-it("Sjekker om render tid for AddCar.js er 1000ms eller mindre", () => {
+    
+it("Checking if AddCar rendering time is less than 1 seconds", () => {
   const timerMillisecondsStart = new Date().getTime();
   render(
     <BrowserRouter>

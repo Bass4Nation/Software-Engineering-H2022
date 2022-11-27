@@ -1,7 +1,6 @@
 // Test libraries
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 
 //Components
 import App from "../../App";
@@ -43,7 +42,7 @@ const userArray = [
   },
 ];
 
-//Tester krav 6
+//Tester krav 6 - Administratorkonto skal kunne slette annonser  
 it("Logged in user with admin rights", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 2);
@@ -65,9 +64,9 @@ it("Logged in user with admin rights", () => {
 
 //--------------------Søke funksjon----------------------------
 
-describe("Søke funksjoner", () => {
+describe("Search function for filtering after price/date/rented out etc.", () => {
     //Krav 11, Brukere skal kunne filtrete alle annonser  
-  it("Filtererer biler under 100kr", () => {
+  it("Filtering cars under 100kr", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
@@ -87,7 +86,7 @@ describe("Søke funksjoner", () => {
     ).toBeTruthy();
   });
 
-  it("Filtererer biler under 1000kr", () => {
+  it("Filtering cars under 1000kr", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
@@ -104,7 +103,7 @@ describe("Søke funksjoner", () => {
   });
 
   //Krav 13. Brukere skal kunne se om bilen som skal bli utleid er ledig på valgt dato  
-  it("Filtererer Etter biler i desember", () => {
+  it("Filtering cars available in december", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
@@ -131,7 +130,7 @@ describe("Søke funksjoner", () => {
     ).toBeTruthy();
   });
 
-  it("Filtererer Etter biler i desember", () => {
+  it("Filtering cars available in november", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
@@ -154,7 +153,7 @@ describe("Søke funksjoner", () => {
     expect(screen.getByText("toyota", { exact: false })).toBeTruthy();
   });
 
-  it("Filtererer Etter utleide biler", () => {
+  it("Filtering out rented cars", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
@@ -206,7 +205,7 @@ describe("Søke funksjoner", () => {
     },
   ];
 
-  it("Filtererer Etter utleide biler", () => {
+  it("Filtering out rented cars (Displaying all cars available)", () => {
     localStorage.setItem("userArray", JSON.stringify(userArrayRentedOut));
     localStorage.setItem("uniqueid", 2);
     localStorage.setItem("loggedInUser", 0);
