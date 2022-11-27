@@ -23,7 +23,7 @@ it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-// Tester to krav. Registrer og logg inn
+// Tester krav 1 og 2
 it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
   render(<App />);
 
@@ -51,7 +51,7 @@ it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden 
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument();
 });
 
-// Krav
+// Tester krav 3
 it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", () => {
   render(<App />);
 

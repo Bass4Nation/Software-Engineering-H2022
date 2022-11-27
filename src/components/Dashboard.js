@@ -96,7 +96,7 @@ const Dashboard = () => {
                   car: {value.car.brand}-{value.car.model} ({value.car.year})
                 </p>
                 <p>price: {value.price}kr</p>
-                <button onClick={() => cancel_renting(value)}>
+                <button data-testid="cancel_renting" onClick={() => cancel_renting(value)}>
                   avbestille leie
                 </button>
               </section>
@@ -116,7 +116,7 @@ const Dashboard = () => {
                 <p>fra {value.available_time}</p>
                 <p>til {value.return_time}</p>
                 <p>Pris: {value.renting_out_price}kr</p>
-                <button onClick={() => deletepost(value)}>Slett annonse</button>
+                <button data-testid="deletepost" onClick={() => deletepost(value)}>Slett annonse</button>
               </section>
             </React.Fragment>
           ))}
@@ -132,7 +132,7 @@ const Dashboard = () => {
                   {car.brand} - {car.model} ({car.year})
                 </p>
                 <p>Regnr: {car.regnr} </p>
-                <button onClick={() => deleteCar(car)}>Slett bil</button>
+                <button data-testid="deleteCar" onClick={() => deleteCar(car)}>Slett bil</button>
               </section>
             </React.Fragment>
           ))}
