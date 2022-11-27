@@ -23,7 +23,7 @@ it("Sjekker om Layout er wrappet av alle rutene i App.js", () => {
   expect(footer).toBeInTheDocument();
 });
 
-// Tester krav 1 og 2
+// Tester krav 1 og 2. Det skal være mulig å registrere nye brukerkontoer, Det skal være mulig å logge seg inn med registeret brukerkonto
 it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden igjen", () => {
   render(<App />);
 
@@ -51,7 +51,15 @@ it("Render forside -> Login siden -> Registrerer en test bruker -> så forsiden 
   expect(screen.getByText("Alle biler til utleie")).toBeInTheDocument();
 });
 
-// Tester krav 3
+/* 
+Tester krav 3, 5, 7, 25, 30, 34. 
+Brukere må logge seg inn for å registrere en bil, 
+Brukere kan laste opp informasjon om bilen, 
+Brukere skal kunne utleie en bil, 
+Brukere skal logge seg inn for å reservere en bil, 
+Programmet skal ikke bruke lengre enn 5 sekunder for å vise utleie data, 
+Systemet skal kunne kjøres som en nettside
+*/
 it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", () => {
   render(<App />);
 
@@ -116,7 +124,6 @@ it("Test for å registrere en bil og etter sjekker om databasen ikke er tom.", (
   const timerMillisecondsEnd = new Date().getTime();
   const timerMilliseconds = timerMillisecondsEnd - timerMillisecondsStart;
   expect(timerMilliseconds).toBeLessThan(5000);
-
 });
 
 // Krav

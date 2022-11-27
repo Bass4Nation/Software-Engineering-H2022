@@ -43,7 +43,7 @@ const userArray = [
   },
 ];
 
-//--------------------ADMIN TEST----------------------------
+//Tester krav 6
 it("Logged in user with admin rights", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 2);
@@ -64,7 +64,9 @@ it("Logged in user with admin rights", () => {
 });
 
 //--------------------Søke funksjon----------------------------
+
 describe("Søke funksjoner", () => {
+    //Krav 11, Brukere skal kunne filtrete alle annonser  
   it("Filtererer biler under 100kr", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);
@@ -101,6 +103,7 @@ describe("Søke funksjoner", () => {
     expect(screen.getByText("toyota", { exact: false })).toBeTruthy();
   });
 
+  //Krav 13. Brukere skal kunne se om bilen som skal bli utleid er ledig på valgt dato  
   it("Filtererer Etter biler i desember", () => {
     localStorage.setItem("userArray", JSON.stringify(userArray));
     localStorage.setItem("uniqueid", 2);

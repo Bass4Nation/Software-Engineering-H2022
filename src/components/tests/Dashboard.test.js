@@ -124,7 +124,7 @@ const userArray = [
     ]
   }
 ]
-
+//Krav 19, Brukere skal ha mulighet for å kansellere reservasjon av bil.  
 it("cancel_renting removed from ui", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 4);
@@ -217,4 +217,35 @@ it("Deletefunctions removed from localstorage", () => {
   fireEvent.click(screen.getByTestId("deleteCar"))
 
   expect(localStorage.getItem("userArray")).toEqual(JSON.stringify(userArray_deleted))
+});
+
+//Krav 21, Brukere skal kunne se sine leide biler  
+it("see rented cars", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  expect(screen.getByText("Kia-Pikanto (2018)", { exact: false })).toBeTruthy();
+
+});
+
+//Krav 22, Brukere skal kunne se sine annonser 
+it("see rented cars", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  expect(screen.getByText("Chevrolet-Silverado 1500 (2020)", { exact: false })).toBeTruthy();
+});
+
+//Krav 23, Brukere skal kunne se sine registrerte biler. 
+it("see rented cars", () => {
+  localStorage.setItem("userArray", JSON.stringify(userArray));
+  localStorage.setItem("uniqueid", 4);
+  localStorage.setItem("loggedInUser", 1);
+
+  render(<App />);
+  expect(screen.getByText("Regnr: 1000", { exact: false })).toBeTruthy();
 });

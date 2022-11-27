@@ -50,6 +50,7 @@ const userArray = [
   },
 ];
 
+//Tester Krav 9, 10. Brukere skal kunne leie en valgt bil, Bruker skal tas til en kjøper side     
 it("leie bil", () => {
   localStorage.setItem("userArray", JSON.stringify(userArray));
   localStorage.setItem("uniqueid", 2);
