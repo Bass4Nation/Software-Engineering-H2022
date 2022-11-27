@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 
 //Components
 import App from "../../App";
-import AddCar from "../AddCar";
 
 const userArray = [
   {
