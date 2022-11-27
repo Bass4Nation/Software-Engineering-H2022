@@ -117,6 +117,7 @@ const AllCars = () => {
             name="highprice"
             value={highprice}
             onChange={handleHighPriceChange}
+            data-testid="highprice"
           />
           <label htmlFor="avaiablefrom">Tilgjenglig fra</label>
           <input
@@ -124,6 +125,7 @@ const AllCars = () => {
             name="avaiablefrom"
             value={availablefrom}
             onChange={handleAvailablefrom}
+            data-testid="avaiablefrom"
           />
           <label htmlFor="availableto">Tilgjenglig til</label>
           <input
@@ -132,6 +134,7 @@ const AllCars = () => {
             value={availableto}
             min={availablefrom}
             onChange={handleAvailableto}
+            data-testid="availableto"
           />
           <section>
             <input
@@ -139,11 +142,12 @@ const AllCars = () => {
               name="rented_out"
               checked={remove_rented_out}
               onChange={toggleRented_out}
+              data-testid="rented_out"
             />
             <label htmlFor="rented_out">Skjul utleide biler</label>
           </section>
 
-          <button onClick={FilterSubmit}>filtrer</button>
+          <button data-testid="filterButton" onClick={FilterSubmit}>filtrer</button>
         </section>
 
         <section className={style.allCars} >
